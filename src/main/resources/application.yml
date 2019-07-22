@@ -1,0 +1,45 @@
+
+spring:
+  aop:
+    proxy-target-class: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/zqm?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 12345678
+    connectionInitSqls: SET NAMES utf8mb4
+    driverClassName: com.mysql.jdbc.Driver
+    mapperLocations: classpath*:mapper/**/*Mapper.xml
+
+
+
+# You can change the default http port
+server:
+  port: 8081
+  contextPath: /zqm   # 配置后bootRun，访问时要http://localhost:8080/zqm
+
+#logging:
+#  level:
+#    ROOT: INFO
+
+debug: true
+
+
+
+# Mybatis 配置
+mybatis:
+  typeAliasesPackage: com.zqm.dao
+  mapperLocations: classpath:mapper/*Mapper.xml
+
+
+# jpa 配置
+#jpa:
+#  database: mysql
+#  show-sql: true
+#  generate-ddl: true
+#  hibernate:
+#    ddl-auto: update
+
+
+
+#all depend api list
+#rest:
