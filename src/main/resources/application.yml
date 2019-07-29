@@ -27,7 +27,7 @@ debug: true
 
 # Mybatis 配置
 mybatis:
-  typeAliasesPackage: com.zqm.dao
+  typeAliasesPackage: com.zqm.vo.service.dao
   mapperLocations: classpath:mapper/*Mapper.xml
 
 

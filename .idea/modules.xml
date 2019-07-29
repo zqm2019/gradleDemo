@@ -4,6 +4,12 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.chen.zqm.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.chen.zqm.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.chen.zqm.test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.chen.zqm.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/business/com.zqm.business.iml" filepath="$PROJECT_DIR$/.idea/modules/business/com.zqm.business.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/business/com.zqm.business.main.iml" filepath="$PROJECT_DIR$/.idea/modules/business/com.zqm.business.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/business/com.zqm.business.test.iml" filepath="$PROJECT_DIR$/.idea/modules/business/com.zqm.business.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.zqm.zqm.iml" filepath="$PROJECT_DIR$/.idea/modules/com.zqm.zqm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.zqm.zqm.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.zqm.zqm.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.zqm.zqm.test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.zqm.zqm.test.iml" />
     </modules>
   </component>
 </project>

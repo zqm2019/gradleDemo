@@ -7,6 +7,10 @@
     <bytecodeTargetLevel>
       <module name="com.chen.zqm.main" target="1.8" />
       <module name="com.chen.zqm.test" target="1.8" />
+      <module name="com.zqm.business.main" target="1.8" />
+      <module name="com.zqm.business.test" target="1.8" />
+      <module name="com.zqm.zqm.main" target="1.8" />
+      <module name="com.zqm.zqm.test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
