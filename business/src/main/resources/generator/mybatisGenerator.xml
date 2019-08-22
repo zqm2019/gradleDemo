@@ -32,7 +32,7 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="t_history_p_value">
+        <table tableName="t_comment_info">
         </table>
 
     </context>

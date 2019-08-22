@@ -24,6 +24,13 @@ server:
 debug: true
 
 
+executorPool:
+  executorMaxPoolSize: 64
+  executorCoreSize: 32
+  keepAliveSeconds: 60
+  queueCapacity: 10
+
+
 
 # Mybatis 配置
 mybatis:

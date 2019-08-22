@@ -97,6 +97,7 @@ dependencies {
 ////    compile group: 'aspectj', name: 'aspectjweaver', version: '1.5.4'
     compile 'org.springframework:spring-core:4.3.13.RELEASE'
 
+    compile 'com.google.guava:guava:26.0-jre'
 
 
 //

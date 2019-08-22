@@ -98,4 +98,10 @@ dependencies {
     compile 'org.springframework:spring-core:4.3.13.RELEASE'
     compile group: 'org.projectlombok', name: 'lombok', version: '1.16.12'
 
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+//    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.12'
+    // https://mvnrepository.com/artifact/org.apache.poi/poi
+    compile group: 'org.apache.poi', name: 'poi', version: '3.17'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
+    compile 'com.google.guava:guava:20.0'
 }
