@@ -104,4 +104,6 @@ dependencies {
     compile group: 'org.apache.poi', name: 'poi', version: '3.17'
     compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
     compile 'com.google.guava:guava:20.0'
+    compile group: 'org.quartz-scheduler', name: 'quartz', version: '2.3.1'
+    compile group: 'com.alibaba', name: 'fastjson', version: '1.2.62'
 }

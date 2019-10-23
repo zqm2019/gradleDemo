@@ -88,16 +88,22 @@ public class ThreadTestController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        FutureTask<String> task = new FutureTask<>(myCallable);
 
+
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        Future<String> future = executorService.submit(myCallable);
+        System.out.println("Future 获得执行结果:" + future.get());
+
+
+        FutureTask<String> futureTask = new FutureTask<>(myCallable);
         //使用 FutureTask 对象作为 Thread 对象的 target 创建并启动新线程
         //没这句，下句代码获取不到结果，会一直等待执行结果
-        new Thread(task, "线程1").start();//靠他来启动线程
-        String taskGet = task.get();
-        System.out.println(taskGet);
+        new Thread(futureTask, "线程1").start();//靠他来启动线程
+        String taskGet = futureTask.get();
+        System.out.println("FutureTask 获取执行结果:" + taskGet);
 
         //设置超时时间
-        String ta = task.get(0, TimeUnit.MICROSECONDS);
+        String ta = futureTask.get(0, TimeUnit.MICROSECONDS);
 
         System.out.println(ta);
 
