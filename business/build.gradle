@@ -106,4 +106,9 @@ dependencies {
     compile 'com.google.guava:guava:20.0'
     compile group: 'org.quartz-scheduler', name: 'quartz', version: '2.3.1'
     compile group: 'com.alibaba', name: 'fastjson', version: '1.2.62'
+    // https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils
+    compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.3'
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-configuration-processor
+    compile group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: '2.2.0.RELEASE'
+
 }

@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.collect.Lists;
+import com.zqm.aop.interceptor.HanderTime;
+import com.zqm.service.aalist;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,14 +27,19 @@ import lombok.NoArgsConstructor;
 @RequestMapping("list")
 public class ListController {
 
+    @Autowired
+    private aalist aalist;
 
+    @HanderTime
     @RequestMapping("test")
-    public void testList() {
+    public Object testList() {
 
+        return aalist.getList();
     }
 
 
     public static void main(String[] args) {
+
         List<Integer> list = new ArrayList<>();
         list.add(1);
         list.add(2);
@@ -102,6 +110,29 @@ public class ListController {
 
     }
 
+
+    /**
+     * 都支持增加
+     * Array$ArrayList不支持删除remove，这将会抛出异常java.lang.UnsupportedOperationException
+     */
+    public static void comparaArray$ArrayListaAndArrayList() {
+        List<String> d = new ArrayList<>();
+        d.add("2");
+        d.remove("2");
+        System.out.println(d);
+
+
+        List<String> a = Arrays.asList("1", "2");
+        if (a.contains("1")) {
+            try {
+                boolean b = a.remove(String.valueOf(1));
+
+            } catch (Exception e) {
+            }
+//            System.out.println(b);
+        }
+        System.out.println(a);
+    }
 
     @Data
     @NoArgsConstructor

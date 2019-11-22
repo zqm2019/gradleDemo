@@ -3,21 +3,23 @@
  */
 package com.zqm.aop;
 
-import java.util.ArrayList;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.beanutils.BeanUtils;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-
-import com.alibaba.fastjson.JSON;
 
 /**
  * TODO: description
@@ -26,10 +28,12 @@ import com.alibaba.fastjson.JSON;
  * @author zhaqianming
  */
 @Aspect //定义一个切面
-@Component // 把普通pojo实例化到spring容器中
+@Component // 把普通pojo实例化到spring容器中,否则将扫描不到切面类
 @Order(1) //多个注解是优先级最高，值越小优先级越高
 public class UserIdCheckAop {
     Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    private static Logger LOGGER;
 
     /**
      * 定义切点 切点也可以直接写在通知的value层
@@ -38,7 +42,8 @@ public class UserIdCheckAop {
     public void cut() {
 
     }
- private static final List list = Arrays.asList("123","345","789");
+
+    private static final List list = Arrays.asList("123", "345", "789");
 
 
     /*
@@ -54,6 +59,8 @@ public class UserIdCheckAop {
 
     /**
      * 拦截器实现
+     * ProceedingJoinPoint获取当前方法joinPoint.getTarget().getClass().getName()和参数getArgs()
+     * 环绕通知 ProceedingJoinPoint 执行proceed方法的作用是让目标方法执行，这也是环绕通知和前置、后置通知方法的一个最大区别
      */
 
     @Around("cut()")
@@ -67,7 +74,7 @@ public class UserIdCheckAop {
                 if (StringUtils.isEmpty(userId)) {
                     return "未登录";
                 }
-                if (!list.contains(userId)){
+                if (!list.contains(userId)) {
                     return "未授权用户";
                 }
             }
@@ -87,9 +94,10 @@ public class UserIdCheckAop {
      * //execution（）                表达式的主体；
      * 第一个”*“符号                   表示返回值的类型任意；
      * com.zqm.service.impl           AOP所切的服务的包名，即，我们的业务部分
-     *  包名后面的”..“                  表示当前包及子包
-     *  第二个”*“                      表示类名，*即所有类。此处可以自定义
-     *  .*(..)                        表示任何方法名，括号表示参数，两个点表示任何参数类型
+     * 包名后面的”..“                  表示当前包及子包
+     * 第二个”*“                      表示类名，*即所有类。此处可以自定义
+     * .*(..)                        表示任何方法名，括号表示参数，两个点表示任何参数类型
+     *
      * @param point
      * @return
      * @throws Throwable
@@ -111,6 +119,44 @@ public class UserIdCheckAop {
         return "原返回值：" + returnValue + "，这是返回结果的后缀";
     }
 
+
+    @Pointcut("@annotation(autoCheckUser)")
+    public void intercept(AutoCheckUser autoCheckUser) {
+    }
+
+    //校验用户是否有权限可以操作群时，方法入参必须填写的属性群id
+    public static final String PROPERY_NAME_ROOM_ID = "roomId";
+
+    //校验用户是否有权限可以操作群时，方法入参必须填写的属性用户名称
+    public static final String PROPERY_NAME_OPER_USERNAME = "operatorName";
+
+    @Before(value = "intercept(checkRoomOperAuth)", argNames = "joinPoint,checkRoomOperAuth")
+    public void doBefore(JoinPoint joinPoint, AutoCheckUser checkRoomOperAuth) throws Exception {
+        Class targetClass = joinPoint.getTarget().getClass();
+        LOGGER = LoggerFactory.getLogger(targetClass);
+        Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
+        String methodName = method.getName();
+        Object object = joinPoint.getArgs()[0];
+        try {
+            String roomId = BeanUtils.getProperty(object, PROPERY_NAME_ROOM_ID);
+            String operatorName = BeanUtils.getProperty(object, PROPERY_NAME_OPER_USERNAME);
+            if (!StringUtils.isEmpty(roomId) && !StringUtils.isEmpty(operatorName)) {
+                //check方法
+                boolean isUserCanOperRoom = false;
+//                boolean isUserCanOperRoom = managerService.checkIsUserCanOperRoom(roomId, operatorName);
+                if (!isUserCanOperRoom) {
+                    throw new Exception("");
+                }
+            } else {
+                LOGGER.warn("roomId: " + roomId + " operatorName:" + operatorName + "args empty!");
+                throw new Exception("");
+            }
+        } catch (Exception ex) {
+            LOGGER.error(methodName + " args empty!");
+            throw new Exception("");
+        }
+
+    }
 
 
 }

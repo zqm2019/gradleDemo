@@ -85,8 +85,6 @@ public class StringController {
 //            return BigDecimal.valueOf(RandomUtils.nextInt(1, end.intValue())).divide(BigDecimal.TEN, 1, BigDecimal.ROUND_HALF_UP);
 //        }
 //    }
-
-
     public static void distributeRedPacket(BigDecimal totalAmount, int num) {
         int amount = totalAmount.multiply(new BigDecimal("100")).intValue();
         Set<Integer> points = new TreeSet<>();
@@ -103,7 +101,28 @@ public class StringController {
     }
 
     public static void main(String[] args) {
-        distributeRedPacket(new BigDecimal(12),5);
+        distributeRedPacket(new BigDecimal(12), 5);
     }
 
+
+    /**
+     Java Character类
+     Java Character.isLetter() 方法,判断字符是否为字母
+     Java Character.isDigit() 方法,判断字符是否为数字
+     Java Character.isUpperCase() 方法,判断字符是否为大写字母
+     Java Character.isLowerCase() 方法,判断字符是否为小写字母
+     Java Character.toUpperCase() 方法,将小写字符转换为大写。
+     Java Character.toLowerCase() 方法,将大写字符转换为小写。
+     Java Character.toString() 方法,char字符转换成string
+     Java Character.isTitleCase() 是否标题首字符
+     Java Character.getNumericValue() Unicode字符int值
+     */
+
+    /**
+     StringUtils.isEmpty()  字符串是否为空 不能区分" "
+     StringUtils.hasText()  是否有字符串 可以
+
+     lang3.StringUtils.isBlank 是否是空白 可以
+
+     */
 }

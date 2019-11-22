@@ -45,6 +45,21 @@ import java.lang.annotation.Target;
 public @interface AutoCheckUser {
 }
 
+/**
+ * 检验参数的注解的实现不仅仅可以通过切面来完成，还可以通过实现HandlerInterceptor接口，覆写preHandle
+ * springboot 的拦截器最常用的登录拦截、或是权限校验、或是防重复提交、或是根据业务像12306去校验购票时间
+ * 方法:
+ * 定义一个Interceptor 非常简单方式也有几种，我这里简单列举两种
+ * 1、类要实现Spring 的HandlerInterceptor 接口
+ * 2、类继承实现了HandlerInterceptor 接口的类，例如 已经提供的实现了HandlerInterceptor 接口的抽象类HandlerInterceptorAdapter
+ *
+ * HandlerInterceptor 接口的三个方法：
+ * preHandle：在业务处理器处理请求之前被调用。预处理，可以进行编码、安全控制、权限校验等处理；
+ * postHandle：在业务处理器处理请求执行完成后，生成视图之前执行。后处理（调用了Service并返回ModelAndView，但未进行页面渲染），有机会修改ModelAndView；
+ * afterCompletion：在DispatcherServlet完全处理完请求后被调用，可用于清理资源等。返回处理（已经渲染了页面）；
+
+ */
+
 /*
 @interface Persons {
     Person[]  value();
