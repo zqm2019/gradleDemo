@@ -43,4 +43,83 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
 
+
+
+    <!--<select id="selectRoomInfoAndMemberImages" resultMap="QrCodeAndImageMap">-->
+    <!--select t1.wx_rid,t1.custom_room_id,t1.serial_number,t1.robot_wx_id,t1.name,t1.wx_pic-->
+    <!--from wx_room t1-->
+    <!--where t1.wx_rid = #{roomId,jdbcType=VARCHAR}-->
+    <!--</select>-->
+
+    <!--一个对多个，全部转成list-->
+    <!--<resultMap id="QrCodeAndImageMap" type="com.tuniu.soc.wx.dao.entity.RoomQrCodeAndImagesEntity">-->
+
+        <!--<result column="wx_rid" jdbcType="VARCHAR" property="roomId"/>-->
+        <!--<result column="name" jdbcType="VARCHAR" property="roomName"/>-->
+        <!--<result column="custom_room_id" jdbcType="VARCHAR" property="customRoomId"/>-->
+        <!--<result column="serial_number" jdbcType="VARCHAR" property="serialNumber"/>-->
+        <!--<collection property="imageList"-->
+                    <!--javaType="list"-->
+                    <!--ofType="java.lang.String">-->
+            <!--<result column="wx_pic"/>-->
+        <!--</collection>-->
+    <!--</resultMap>-->
+
+
+
+
+    <!--<select id="selectRoomInfoAndMemberImages" resultMap="QrCodeAndImageMap">-->
+    <!--select t1.wx_rid,t1.custom_room_id,t1.serial_number,t1.robot_wx_id,t1.name-->
+    <!--from wx_room t1-->
+    <!--where t1.wx_rid = #{roomId,jdbcType=VARCHAR}-->
+    <!--</select>-->
+
+    <!--一对多，并且指定多的长度-->
+    <!--<resultMap id="QrCodeAndImageMap" type="com.tuniu.soc.wx.dao.entity.RoomQrCodeAndImagesEntity">-->
+
+        <!--<result column="wx_rid" jdbcType="VARCHAR" property="roomId"/>-->
+        <!--<result column="name" jdbcType="VARCHAR" property="roomName"/>-->
+        <!--<result column="custom_room_id" jdbcType="VARCHAR" property="customRoomId"/>-->
+        <!--<result column="serial_number" jdbcType="VARCHAR" property="serialNumber"/>-->
+        <!--<collection property="imageList"-->
+                    <!--ofType="com.tuniu.soc.wx.dao.entity.RoomIdAndImageEntity"-->
+                    <!--select="com.tuniu.soc.wx.dao.mapper.manual.WxRoomQrCodeSendInfoManualMapper.selectMemberImagesByRoomId"-->
+                    <!--column="wx_rid">-->
+            <!--&lt;!&ndash;<result property="roomId" jdbcType="VARCHAR" column="room_id"/>&ndash;&gt;-->
+        <!--</collection>-->
+    <!--</resultMap>-->
+
+
+    <!--<select id="selectMemberImagesByRoomId" resultType="java.lang.String">-->
+        <!--select wx_pic-->
+        <!--from wx_contact-->
+        <!--where room_id = #{roomId,jdbcType=VARCHAR} limit 0-->
+            <!--,10-->
+    <!--</select>-->
+
+
+
+    <!--一对多，多需要多个入参查询时，column="{roomId=wx_rid,name=name,....}"-->
+    <!--<resultMap id="QrCodeAndImageMap" type="com.tuniu.soc.wx.dao.entity.RoomQrCodeAndImagesEntity">-->
+
+        <!--<result column="wx_rid" jdbcType="VARCHAR" property="roomId"/>-->
+        <!--<result column="name" jdbcType="VARCHAR" property="roomName"/>-->
+        <!--<result column="custom_room_id" jdbcType="VARCHAR" property="customRoomId"/>-->
+        <!--<result column="serial_number" jdbcType="VARCHAR" property="serialNumber"/>-->
+        <!--<collection property="imageList"-->
+                    <!--ofType="string"-->
+                    <!--select="selectMemberImagesByRoomId"-->
+                    <!--column="{roomId=wx_rid}">-->
+        <!--</collection>-->
+    <!--</resultMap>-->
+
+
+    <!--<select id="selectMemberImagesByRoomId" resultType="java.lang.String">-->
+        <!--select wx_pic-->
+        <!--from wx_contact-->
+        <!--where room_id = #{roomId,jdbcType=VARCHAR} limit 0-->
+            <!--,10-->
+    <!--</select>-->
+
+
 </mapper>
