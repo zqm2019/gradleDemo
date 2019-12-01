@@ -23,8 +23,10 @@ public abstract class AbstractCallBackHandler implements ApplicationContextAware
 
 
     static {
-        TYPE_HANDLER.put(CallBackTypeEnum.CREATE_ROOM.getType(), CreateRoomCallbackVoHandler.class);
-        TYPE_HANDLER.put(CallBackTypeEnum.ROOM_QR_CODE.getType(), QrCodeCallbackVoHandler.class);
+        TYPE_HANDLER.put(CallBackTypeEnum.CALL_BACK_TYPE_ONE.getType(), CreateRoomCallbackVoHandler.class);
+        TYPE_HANDLER.put(CallBackTypeEnum.CALL_BACK_TYPE_TWO.getType(), QrCodeCallbackVoHandler.class);
+        TYPE_HANDLER.put(CallBackTypeEnum.CALL_BACK_TYPE_THREE.getType(), QrCodeCallbackVoHandler.class);
+        TYPE_HANDLER.put(CallBackTypeEnum.CALL_BACK_TYPE_FOUR.getType(), QrCodeCallbackVoHandler.class);
         //todo 新的回调类型再次添加
     }
 

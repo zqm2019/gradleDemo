@@ -15,4 +15,6 @@ public interface UserService {
 
     String insertUserInfo(TUserInfo tUserInfo);
 
+    byte getSubscribeType();
+
 }

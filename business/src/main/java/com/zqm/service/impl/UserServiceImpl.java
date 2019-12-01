@@ -20,6 +20,11 @@ import com.zqm.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 
+    @Override
+    public byte getSubscribeType() {
+        return (byte) 1;
+    }
+
     @Resource
     private TUserInfoMapper userInfoMapper;
 

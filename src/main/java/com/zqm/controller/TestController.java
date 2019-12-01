@@ -1,15 +1,20 @@
 
 package com.zqm.controller;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zqm.build.BuildService;
 import com.zqm.dao.entity.TUserInfo;
+import com.zqm.dao.mapper.MyselfMapper;
 import com.zqm.service.UserService;
 import com.zqm.service.impl.PeopleService;
+import com.zqm.service.impl.UserServiceImpl;
 import com.zqm.vo.People;
 
 
@@ -22,14 +27,30 @@ import com.zqm.vo.People;
 @RestController
 public class TestController {
 
+
     @Autowired
     private PeopleService peopleService;
 
+
+
     @Autowired
+    @Qualifier("userServiceImpl")
     private UserService userService;
+
+
+    @Resource(name = "userServiceImpl2")
+    private UserService userService1;
+
+    @Resource(type = UserServiceImpl.class)
+    private UserService userService3;
 
     @Autowired
     private BuildService buildService;
+
+
+    @Autowired(required = false)
+    private Data data2;
+
 
     public static class Data {
         private int a;
@@ -45,13 +66,15 @@ public class TestController {
 
     @RequestMapping("/jj")
     public String hello(@RequestBody Data data) {
+
         return "Hello World!";
     }
 
 
     @RequestMapping(value = "update")
     public String updateUser(@RequestBody TUserInfo tUserInfo) {
-        return userService.updateUserInfo(tUserInfo);
+//        return userService.updateUserInfo(tUserInfo);
+        return "";
     }
 
 
@@ -70,6 +93,17 @@ public class TestController {
         buildService.buildPeopleAge();
         buildService.buildPeopleName().build(people, "wy");
         return people;
+    }
+
+    @Resource
+    private MyselfMapper myselfMapper;
+
+    @RequestMapping("test/mybatis")
+    public Object testMybatis(Integer a) {
+        myselfMapper.selectNewsInfo(a);
+        System.out.println(myselfMapper.selectMap(a));
+        return myselfMapper.selectMap(a);
+
     }
 
 

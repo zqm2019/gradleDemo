@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zqm.dao.mapper.OneTOMany">
-    <resultMap type="com.zqm.dao.entity.TNewsInfo" id="commentMap">
+<mapper namespace="com.zqm.dao.mapper.OneToMany">
+    <resultMap type="com.zqm.dao.entity.NewsCommentEntity" id="commentMap">
         <id column="id" property="id" jdbcType="INTEGER"/>
-        <collection property="users" ofType="com.zqm.dao.entity.TCommentInfo" column="id">
+        <collection property="comments" ofType="com.zqm.dao.entity.TCommentInfo" column="id">
             <result column="new_id" jdbcType="VARCHAR" property="newId"/>
             <result column="user_name" jdbcType="VARCHAR" property="userName"/>
             <result column="user_tel" jdbcType="VARCHAR" property="userTel"/>
@@ -12,12 +12,9 @@
 
     <select id="selectCommentByNewId"  resultMap="commentMap">
         select
-            t1.id AS id,
-            new_id as newId,
-            user_name as userName,
-            user_tel as user tel
+            t1.id AS id
         from t_news_info t1
-                 left join t_comment_info t2 on t1.id = t2.new_id
+                 left join t_comment_info t2 on t1.id = t2.new_id limit 0,10
     </select>
 
 

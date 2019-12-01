@@ -8,8 +8,11 @@ package com.zqm.polymorphism;
  * @author zhaqianming
  */
 public enum CallBackTypeEnum {
-    CREATE_ROOM(4001, "创建群回调"),
-    ROOM_QR_CODE(4008, "获取二维码");
+    CALL_BACK_TYPE_ONE(1, "回调类型1"),
+    CALL_BACK_TYPE_TWO(2, "回调类型2"),
+    CALL_BACK_TYPE_THREE(3, "回调类型3"),
+    CALL_BACK_TYPE_FOUR(4, "回调类型4");
+    //todo 其他回调类型依次添加
 
 
     private int type;
@@ -39,7 +42,8 @@ public enum CallBackTypeEnum {
     CallBackTypeEnum(int type, String typeDesc) {
         this.type = type;
         this.typeDesc = typeDesc;
-    }}
+    }
+}
 
 
 

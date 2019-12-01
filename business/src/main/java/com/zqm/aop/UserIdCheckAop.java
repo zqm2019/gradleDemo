@@ -64,10 +64,10 @@ public class UserIdCheckAop {
      */
 
     @Around("cut()")
-    public Object FilterUser(ProceedingJoinPoint joinPoint) {
+    public Object FilterUser(ProceedingJoinPoint joinPoint)throws Throwable {
         Object result;
         Object[] args = joinPoint.getArgs();
-        try {
+//        try {
             //访问目标方法的参数：
             if (args != null && args.length > 1) {
                 String userId = String.valueOf(args[1]);
@@ -75,20 +75,55 @@ public class UserIdCheckAop {
                     return "未登录";
                 }
                 if (!list.contains(userId)) {
+//                    throw new RuntimeException("dd");
                     return "未授权用户";
                 }
             }
 
             //服务调用执行
             result = joinPoint.proceed(args);
-        } catch (Exception e) {
-            result = e.getMessage();
-        } catch (Throwable throwable) {
-            result = throwable.getMessage();
-        }
+//        } catch (Exception e) {
+//            result = e.getMessage();
+//        } catch (Throwable throwable) {
+//            result = throwable.getMessage();
+//        }
         return result;
 
     }
+
+
+    /**
+     * Aop中的额异常必须是RuntimeException异常或其子类否则抛出UndeclaredThrowableException异常。
+     * 下面例子放开可测试
+     */
+//    @Around("cut()")
+//    public Object FilterUser(ProceedingJoinPoint joinPoint)throws Throwable {
+//        Object result;
+//        Object[] args = joinPoint.getArgs();
+////        try {
+//        //访问目标方法的参数：
+//        if (args != null && args.length > 1) {
+//            String userId = String.valueOf(args[1]);
+//            if (StringUtils.isEmpty(userId)) {
+//                return "未登录";
+//            }
+//            if (!list.contains(userId)) {
+//                throw new Exception("dd");
+//                 throw new RuntimeException("dd");
+////                    return "未授权用户";
+//            }
+//        }
+//
+//        //服务调用执行
+//        result = joinPoint.proceed(args);
+////        } catch (Exception e) {
+////            result = e.getMessage();
+////        } catch (Throwable throwable) {
+////            result = throwable.getMessage();
+////        }
+//        return result;
+//
+//    }
 
     /**
      * //execution（）                表达式的主体；
