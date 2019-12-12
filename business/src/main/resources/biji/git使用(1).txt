@@ -1,0 +1,95 @@
+删除远程分支:
+git push origin --delete 分支名称 --远程分支
+git branch -d 分支名称  --可以删除本地分支（在主分支中）
+
+//保存git密码
+git config --global credential.helper store
+
+
+往gerrit提交代码：
+git status              查看代码是否修改
+git stash               暂存已经修改的代码
+git checkout master     切换到主分支
+git pull origin master  拉去远端代码
+git checkout local      切换到本地分支
+git rebase master       整合本地和远端代码（保持本地最新）
+git stash pop           将暂存的释放出来，有冲突会提醒
+git add .
+git commit -m "说明"  
+git push origin HEAD:refs/for/master  根据网址选择代码复查人
+
+
+追加：（代码审查之后，若有修改的地方需要追加，
+       追加的含义是指两次提交时同一次提交）
+git add .
+git commit --amend
+git push origin HEAD:refs/for/master
+
+
+lsof -i:8080  //端口
+Kill -9 端口号  //sha
+
+
+解决办法一:保留本地的更改,中止合并->重新合并->重新拉取
+$:git merge --abort
+$:git reset --merge
+$:git pull
+
+解决办法二:舍弃本地代码,远端版本覆盖本地版本(慎重)
+$:git fetch --all
+$:git reset --hard origin/master
+$:git fetch
+
+版本回退
+git reset cfcad2b3b125c70e1f85e750ecd5aa089d5756ad（需要回退的commitid号）
+版本回滚
+git revert 
+版本穿梭
+Git reflog 打印你每次的操作记录
+
+
+往bbt提交代码：
+git checkout bbt_test
+git pull 
+git cherry-pick 799d1c270f455cacace3da38ce4ed5c441ef3a92
+git push bbt HEAD:test
+git push -f bbt HEAD:test(强制推送)
+
+
+第一次：
+git branch –a # 查看所有分支
+git remote add bbt 网址 # 新增bbt远程分支
+git fetch bbt #获取bbt分支信息
+git checkout -b bbt_test bbt/test #新建本地分支bbt_test并切换, 与远程bbt/test关联
+git cherry-pick commitid号（不记得git log找） #从master中选择一个commit-id 合到bbt_test
+git push bbt HEAD:test #将bbt_test上的commit提交到远程bbt/test
+
+切回到开发分支：
+git checkout master
+
+
+git pull == git fetch + get merge     修改直接拉下来于本地代码merge，且产生一个commit，也就是merge commit
+git pull --rebase == git fetch + git rebase    —rebase 并不会产生一个commit提交
+
+
+如何解决冲突：
+选中冲突文件（标红）右击git之后倒数第二个（resove conflic），两边往中间合并。
+
+代码上线后，使用灰度测试一下： 
+1.本地启动一下tool\startup.sh
+//本地自己调用，若是启动给别人测试换成本地IP即可，http://172.31.85.87:3000/tools.html 
+2.http://127.0.0.1:3000/tools.html   
+第一行格式：request:"/tour/price/calendar"
+limit：条数，测你那个接口先试试100
+系统名 ：mob-tour，点获取ip
+然后点“24小时抽样“
+然后点“开始”
+运行完毕后，对比数据，查看灰度和生产不同的地方
+比较：失败次数，和点击diff，查看不同的地方。是否加了你想要或改变的东西。
+
+
+
+
+
+
+

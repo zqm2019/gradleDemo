@@ -1,0 +1,83 @@
+
+//创建表
+CREATE TABLE `t_poster_base` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `open_id` varchar(100) NOT NULL DEFAULT '' COMMENT '用户openid',
+  `poster_image` varchar(255) NOT NULL DEFAULT '' COMMENT '海报原图',
+  `poster_detail` text COMMENT '海报信息的json串',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `is_share` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否共享:0否1是',
+  `is_delete` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否共享:0否1是',
+   PRIMARY KEY (`id`),
+   KEY `idx_t_poster_base_open_id` (`open_id`),
+   KEY `idx_t_poster_base_is_share` (`is_share`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='海报基本信息3.0版';
+//修改表名称
+alter table 原表名 rename 现表名
+
+//删除表
+drop table name
+
+//删除表数据
+TRUNCATE TABLE name
+delete from name  --可以回滚
+
+
+//批量更新格式化
+update t_poster_base set poster_image = replace(poster_image,"httpsm","https://m")
+// 添加字段
+alter table `bargain_detail` add `p_value` varchar(11) not null default '' comment '指定p值'; --
+alter table `bargain_detail` add `new_member`  tinyint(1) not null default '0' comment '是否是新会员:1是0否';--boolean型
+在mysql数据库中怎样在指定的一个字段后面添加一个字段：
+alter table newexample add address varchar(110) after stu_id;
+
+//修改字段类型一级默认值
+alter table wx_room MODIFY COLUMN `robot_status` int(11) NOT NULL DEFAULT '1' COMMENT '机器人状态:1监控中,2已暂停,3已退出';
+
+
+alter table t_poster_base MODIFY COLUMN `robot_status` int(11) NOT NULL DEFAULT '1' COMMENT '机器人状态:1监控中,2已暂停,3已退出';
+//修改字段名
+alter table `bargain_detail` change `bragain_order_id` `bargain_order_id` int(11) not null default '0' comment '紧急';
+
+修改字段长度命令
+alter table 表名 modify column 列名 类型(要修改的长度);
+
+//删除字段
+alter table 表名 drop column 字段名;
+//多个字段
+alter table 表名 drop column 字段名,drop column 字段名...
+
+
+//添加索引（同一字段，先删除后添加）
+ALTER TABLE bargain_order DROP INDEX UK_qqkm9ufr2yrnig2ex73r64udm;
+ALTER TABLE bargain_order add INDEX UK_qqkm9ufr2yrnig2ex73r64udm(`bargain_id`);
+ALTER TABLE `wx_room` DROP INDEX `idx_wx_room_wx_rid` ,ADD UNIQUE INDEX `idx_wx_room_wx_rid` (`wx_rid`) USING BTREE ;
+
+//查看生成的表的语句
+show create table wx_room
+
+//查看数据库所有的表
+show tables
+
+//查看某个表的字段信息
+desc tableName
+
+//用户昵称中存在emoji表情，调用jdbc往mysql数据库插入的时候抛出异常 java.sql.SQLException: Incorrect string value: '\xF0\x9F\x90\x9B'
+//mysql存储emojo表情 ----将表中对应的字段字符集是修改为utf8mb4
+ALTER TABLE wx_contact DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci; --修改标的默认字符集
+
+如果是修改表的字符集，需注意一点 字符集的约束关系   列级>表级>库级
+show full columns from table; --查看对应的table表中所有列级属性的字符集
+alter table admin modify user_name varchar(100) charset utf8mb4; -- 修改对应字段的字符集
+alter table wx_contact modify name varchar(255) charset utf8mb4;
+alter table wx_contact modify name varchar(255) NOT NULL DEFAULT '' COMMENT '微信名称'; --保证他的默认值
+
+ALTER TABLE logtest CHANGE title title VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci; --修改字段的字符集
+
+
+在使用mysql时候，某些字段会存储中文字符，或是包含中文字符的串，查询出来的方法是：
+　　SELECT column FROM table WHERE length(column)!=char_length(column)
+原理其实很简单，当字符集为UTF-8，并且字符为中文时，length() 和 char_length() 两个方法返回的结果是不相同的。
+//查询字段首字母是大学
+SELECT * from t_user_info where oa_name_en REGEXP BINARY '[A-Y]' 

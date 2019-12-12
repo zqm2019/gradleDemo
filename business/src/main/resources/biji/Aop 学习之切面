@@ -1,0 +1,33 @@
+Aop 学习之切面
+
+初识七大注解
+@Aspect:作用是把当前类标识为一个切面供容器读取
+@Pointcut：Pointcut是植入Advice的触发条件。每个Pointcut的定义包括2部分，一是表达式，二是方法签名。方法签名必须是 public及void型。可以将Pointcut中的方法看作是一个被Advice引用的助记符，因为表达式不直观，因此我们可以通过方法签名的方式为 此表达式命名。因此Pointcut中的方法只需要方法签名，而不需要在方法体内编写实际代码。
+@Around：环绕增强，相当于MethodInterceptor(方法拦截器)
+@AfterReturning：后置增强，相当于AfterReturningAdvice，方法正常退出时执行
+@Before：标识一个前置增强方法，相当于BeforeAdvice的功能，相似功能的还有
+@AfterThrowing：异常抛出增强，相当于ThrowsAdvice
+@After: final增强，不管是抛出异常或者正常退出都会执行
+
+1.interface JoinPoint  --父级接口
+  方法介绍:
+    (1)String toString();         //连接点所在位置的相关信息  
+    (2)String toShortString();     //连接点所在位置的简短相关信息  
+    (3)String toLongString();     //连接点所在位置的全部相关信息  
+    (4)Object getThis();	//获取代理对象
+ 	(5)Object getTarget();  //获取被代理的对象,也就是定义方法的接口或类
+ 	(6)Object[] getArgs();  //获取传入目标方法的参数对象(返回被通知方法参数列表)
+ 	(7)Signature getSignature();  //返回连接点处的签名。获取封装了署名信息的对象,在该对象中可以获取到目标方法名,所属类的Class等信息
+ 		Signature 常用方法:
+ 			String getName();  //获取方法名
+ 			String getDeclaringTypeName();  //获取类名
+ 	(8)String getKind();        //连接点类型  
+    (9)StaticPart getStaticPart(); //返回连接点静态部分(提供访问连接点的静态部分，如被通知方法签名、连接点类型等)
+
+2.interface ProceedingJoinPoint extends JoinPoint  --子类接口
+  方法介绍:
+    (1)Object proceed() throws Throwable;         
+    (2)Object proceed(Object[] args) throws Throwable;     
+    Proceedingjoinpoint 继承了JoinPoint，是在JoinPoint的基础上暴露proceed这个方法。proceed很重要，这个是aop代理链执行的方法。
+    暴露出这个方法，就能支持 aop:around 这种切面（而其他的几种切面只需要用到JoinPoint，这跟切面类型有关）
+
