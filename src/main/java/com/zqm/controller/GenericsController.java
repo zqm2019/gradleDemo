@@ -4,10 +4,15 @@
 package com.zqm.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.zqm.service.GenericService;
+import com.zqm.service.impl.GenericServiceImpl1;
+import com.zqm.service.impl.GenericServiceImpl2;
 
 /**
  * 泛型方法 泛型接口 泛型类 测试
@@ -38,23 +43,88 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GenericsController {
 
+    @Autowired
+    private List<GenericService> genericService;
+
+//    private static Map
+
+
+
+//    public static void method(List<String> list){
+//        System.out.println("string list");
+//    }
+//    public static void method(List<Integer> list){
+//        System.out.println("integer list");
+//    }
+
+//    public static String method(List<String> list){
+//        System.out.println("string list");
+//        return "";
+//    }
+//    public static Integer method(List<Integer> list){
+//        System.out.println("integer list");
+//        return 1;
+//    }
+
     public static void main(String[] args) {
-        List<String> stringList = new ArrayList<>();
+        GenericServiceImpl1 genericService = new GenericServiceImpl1();
+        genericService.show("dddd");
+        GenericServiceImpl2 genericServiceImpl2 = new GenericServiceImpl2();
+        genericServiceImpl2.show(1);
 
-        getElementForList(stringList);
-        System.out.println();
-        stringList.add("w");
-        getElementForList(stringList);
-        System.out.println();
+        if (true) {
+            System.out.println("true");
+        } else {
+            System.out.println(false);
+        }
 
-        List<Integer> integers = Arrays.asList(1, 3);
-        getElementForList(integers);
-        System.out.println(getSubList(integers));
-        System.out.println(getSubList(stringList));
-        System.out.println(getList(stringList));
-        System.out.println(getList(integers));
-        System.out.println(getSubListforT(stringList));
-        System.out.println(getSubListforT(integers));
+        /**
+         * 上述代码反编译之后的
+         *   System.out.println("true");
+         */
+        List<String> list = new ArrayList<>();
+
+        list.add("dfsaf");
+        List<Integer> listinz = new ArrayList<>();
+        listinz.add(1);
+        listinz.add(2);
+        for (Integer a : listinz) {
+            System.out.println(a);
+        }
+
+        System.out.println(list.get(0));
+        /** 上述代码反编译文件
+         * public static void main(String[] args) {
+         *       ArrayList list = new ArrayList();
+         *       list.add("dfsaf");
+         *       ArrayList listinz = new ArrayList();
+         *       listinz.add(Integer.valueOf(1));
+         *       listinz.add(Integer.valueOf(2));
+         *       Iterator var3 = listinz.iterator();
+         *
+         *       while(var3.hasNext()) {
+         *          Integer a = (Integer)var3.next();
+         *          System.out.println(a);
+         *       }
+         *
+         *       System.out.println((String)list.get(0));
+         */
+//        List<String> stringList = new ArrayList<>();
+//
+//        getElementForList(stringList);
+//        System.out.println();
+//        stringList.add("w");
+//        getElementForList(stringList);
+//        System.out.println();
+//
+//        List<Integer> integers = Arrays.asList(1, 3);
+//        getElementForList(integers);
+//        System.out.println(getSubList(integers));
+//        System.out.println(getSubList(stringList));
+//        System.out.println(getList(stringList));
+//        System.out.println(getList(integers));
+//        System.out.println(getSubListforT(stringList));
+//        System.out.println(getSubListforT(integers));
 
     }
 
