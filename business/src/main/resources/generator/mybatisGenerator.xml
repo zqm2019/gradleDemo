@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-    <classPathEntry location="/Users/zhaqianming/Documents/gradle-2.3/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.35/b6ac941b7288376a7e8bc6490264bbd4427fb94e/mysql-connector-java-5.1.35.jar" />
+    <classPathEntry location="/Users/zhaqianming/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/8.0.11/2c3d25fe1dfdd6496e0bbe47d67809f67487cfba/mysql-connector-java-8.0.11.jar" />
 
     <context id="Mysql2Tables" targetRuntime="MyBatis3">
         <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
@@ -12,27 +12,27 @@
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/zqm?useUnicode=true&amp;characterEncoding=UTF-8"
                         userId="root"
-                        password="12345678">
+                        password="">
         </jdbcConnection>
 
         <javaTypeResolver >
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.zqm.dao.entity" targetProject="/Users/zhaqianming/Desktop/zqm/business/src/main/java">
+        <javaModelGenerator targetPackage="com.zqm.dao.entity" targetProject="/Users/zhaqianming/Documents/project/gradelDemo/business/src/main/java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="resources.mapper"  targetProject="/Users/zhaqianming/Desktop/zqm/business/src/main">
+        <sqlMapGenerator targetPackage="resources.mapper"  targetProject="/Users/zhaqianming/Documents/project/gradelDemo/business/src/main">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zqm.dao.mapper" targetProject="/Users/zhaqianming/Desktop/zqm/business/src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zqm.dao.mapper" targetProject="/Users/zhaqianming/Documents/project/gradelDemo/business/src/main/java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="t_comment_info">
+        <table tableName="student">
         </table>
 
     </context>

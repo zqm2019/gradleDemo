@@ -12,5 +12,5 @@
 >  执行
 
 mybatisGenerator.xml 所在目录执行（替换mybatis-generator-core-1.3.7.jar本地路径） 
-java -jar /Users/zhaqianming/Documents/gradle-2.3/caches/modules-2/files-2.1/org.mybatis.generator/mybatis-generator-core/1.3.7/3708fc3697489d9890f4bbf1ff4098f84b9cf97b/mybatis-generator-core-1.3.7.jar  -configfile mybatisGenerator.xml -overwrite
+java -jar /Users/zhaqianming/.gradle/caches/modules-2/files-2.1/org.mybatis.generator/mybatis-generator-core/1.3.7/3708fc3697489d9890f4bbf1ff4098f84b9cf97b/mybatis-generator-core-1.3.7.jar  -configfile mybatisGenerator.xml -overwrite
 

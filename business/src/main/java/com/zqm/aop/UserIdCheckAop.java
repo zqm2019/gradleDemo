@@ -127,11 +127,14 @@ public class UserIdCheckAop {
 
     /**
      * //execution（）                表达式的主体；
-     * 第一个”*“符号                   表示返回值的类型任意；
+     * 第一个”*“符号                   表示返回值的类型任意；*号跟一个空格 必不可少
      * com.zqm.service.impl           AOP所切的服务的包名，即，我们的业务部分
      * 包名后面的”..“                  表示当前包及子包
      * 第二个”*“                      表示类名，*即所有类。此处可以自定义
      * .*(..)                        表示任何方法名，括号表示参数，两个点表示任何参数类型
+     *
+     *  && 且操作
+     *  !execution表示除外
      *
      * @param point
      * @return
@@ -139,7 +142,7 @@ public class UserIdCheckAop {
      */
 
     //只定义切面
-    @Around("execution(* com.zqm.service.impl..*.*(..))")
+    @Around("execution(* com.zqm.service.impl..*.*(..)) &&  !execution(* com.zqm.service.impl..PeopleService.*(..))")
     public Object process(ProceedingJoinPoint point) throws Throwable {
         System.out.println("@Around：执行目标方法之前...");
         //访问目标方法的参数：

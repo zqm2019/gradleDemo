@@ -112,6 +112,9 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: '2.2.0.RELEASE'
     // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+    // https://mvnrepository.com/artifact/ma.glasnost.orika/orika-core
+    compile group: 'ma.glasnost.orika', name: 'orika-core', version: '1.5.4'
+
 
 
 }

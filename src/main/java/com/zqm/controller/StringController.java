@@ -1,10 +1,12 @@
 
 package com.zqm.controller;
 
+import com.google.common.base.Joiner;
+import org.hibernate.mapping.Join;
+
 import java.math.BigDecimal;
-import java.util.Random;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 字符串测试类
@@ -100,9 +102,9 @@ public class StringController {
         }
     }
 
-    public static void main(String[] args) {
-        distributeRedPacket(new BigDecimal(12), 5);
-    }
+//    public static void main(String[] args) {
+//        distributeRedPacket(new BigDecimal(12), 5);
+//    }
 
 
     /**
@@ -125,4 +127,17 @@ public class StringController {
      lang3.StringUtils.isBlank 是否是空白 可以
 
      */
+
+    public static void main(String[] args) {
+        //跳过null的凭借，注意，最后一个字符不能为null，否则空指针
+        System.out.println(Joiner.on(";").skipNulls().join("dfd","dfs",null,""));
+        //字符串拼接，把null转换成制定的00
+        System.out.println(Joiner.on(";").useForNull("00").join("dfd","dfs","",null));
+        //将list转字符串
+        List<String> list1 = Arrays.asList(
+                "Google", "Guava", "Java", "Scala","",null);
+        System.out.println(Joiner.on(":").skipNulls().join(list1));
+        System.out.println(list1.stream().filter(o->o!=null).collect(Collectors.joining(";")));
+
+    }
 }

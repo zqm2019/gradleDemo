@@ -21,6 +21,7 @@ public class PeopleService {
                     .age(11)
                     .birthDay("12.05")
                     .name("zqm")
+                    .sex("nan")
                     .build();
         } else {
             people = People.builder()

@@ -12,5 +12,4 @@ package com.zqm.build;
 public interface TestBuild<A, B> {
 
     void build(A a, B b);
-
 }
