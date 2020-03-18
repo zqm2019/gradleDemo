@@ -26,6 +26,15 @@ Kill -9 端口号  //sha
 //保存git密码
 git config --global credential.helper store
 
+git config --list	// 查看配置信息
+
+--本项目的
+git config user.name myName	// 自己的用户名
+git config user.email myEmail	// 自己的邮箱
+
+--全局的
+git config --global user.name globalName	// 全局的用户名
+git config --global user.email globalEmail	// 全局的邮箱
 
 往gerrit提交代码：
 git status              查看代码是否修改
