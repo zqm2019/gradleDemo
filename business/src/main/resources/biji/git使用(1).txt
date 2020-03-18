@@ -1,6 +1,27 @@
+git 初始化
+--先后远程在本地
+Create a new repository
+git clone 地址
+cd 刚下载的目录
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin master
+
+--Existing folder
+cd existing_folder
+git init
+git remote add origin git远程地址
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+
 删除远程分支:
 git push origin --delete 分支名称 --远程分支
 git branch -d 分支名称  --可以删除本地分支（在主分支中）
+
+lsof -i:8080  //端口
+Kill -9 端口号  //sha
 
 //保存git密码
 git config --global credential.helper store
@@ -15,7 +36,7 @@ git checkout local      切换到本地分支
 git rebase master       整合本地和远端代码（保持本地最新）
 git stash pop           将暂存的释放出来，有冲突会提醒
 git add .
-git commit -m "说明"  
+git commit -m "说明"
 git push origin HEAD:refs/for/master  根据网址选择代码复查人
 
 
@@ -25,9 +46,6 @@ git add .
 git commit --amend
 git push origin HEAD:refs/for/master
 
-
-lsof -i:8080  //端口
-Kill -9 端口号  //sha
 
 
 解决办法一:保留本地的更改,中止合并->重新合并->重新拉取
