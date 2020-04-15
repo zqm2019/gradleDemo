@@ -11,7 +11,7 @@ import java.util.Date;
 public class User implements Serializable {
 
     private static final long serialVersionUID = 8843535271490853414L;
-    private int id;
+    private Integer id;
     @Nullable
     private String username;// 用户姓名
     @NotNull
@@ -19,6 +19,8 @@ public class User implements Serializable {
     private String age;
     private Date birthday;// 生日
     private int nickName;
+
+    private String lll;
 
 
 

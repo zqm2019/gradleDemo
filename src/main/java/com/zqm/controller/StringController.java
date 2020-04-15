@@ -1,11 +1,17 @@
 
 package com.zqm.controller;
 
+import com.carrotsearch.sizeof.RamUsageEstimator;
 import com.google.common.base.Joiner;
 import org.hibernate.mapping.Join;
+import org.wltea.analyzer.core.IKSegmenter;
+import org.wltea.analyzer.core.Lexeme;
 
+import java.io.StringReader;
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -121,23 +127,115 @@ public class StringController {
      */
 
     /**
-     StringUtils.isEmpty()  字符串是否为空 不能区分" "
-     StringUtils.hasText()  是否有字符串 可以
-
-     lang3.StringUtils.isBlank 是否是空白 可以
-
+     * StringUtils.isEmpty()  字符串是否为空 不能区分" "
+     * StringUtils.hasText()  是否有字符串 可以
+     * <p>
+     * lang3.StringUtils.isBlank 是否是空白 可以
      */
 
-    public static void main(String[] args) {
-        //跳过null的凭借，注意，最后一个字符不能为null，否则空指针
-        System.out.println(Joiner.on(";").skipNulls().join("dfd","dfs",null,""));
-        //字符串拼接，把null转换成制定的00
-        System.out.println(Joiner.on(";").useForNull("00").join("dfd","dfs","",null));
+    public static void main(String[] args) throws Exception {
+
+        System.out.println(segment("A4"));
+        int[] s = new int[1024];
+        System.out.println("size(s):" + RamUsageEstimator.humanSizeOf(s));
         //将list转字符串
         List<String> list1 = Arrays.asList(
-                "Google", "Guava", "Java", "Scala","",null);
+                "Google", "Guava", "Java", "Scala", "", null);
+        System.out.println("size(s):" + RamUsageEstimator.humanSizeOf(list1));
+        System.out.println("size(s):" + RamUsageEstimator.humanSizeOf("java"));
+        System.out.println("size(s):" + RamUsageEstimator.humanSizeOf("Guava"));
+
+        System.out.println("size(s):" + RamUsageEstimator.humanSizeOf("Google"));
+
+        System.out.println("size(s):" + RamUsageEstimator.humanSizeOf("Scala"));
+        System.out.println("size(s):" + RamUsageEstimator.humanSizeOf(null));
+
+
+        System.out.println(lineToHump("band_name"));
+        //跳过null的凭借，注意，最后一个字符不能为null，否则空指针
+        System.out.println(Joiner.on(";").skipNulls().join("dfd", "dfs", null, ""));
+        //字符串拼接，把null转换成制定的00
+        System.out.println(Joiner.on(";").useForNull("00").join("dfd", "dfs", "", null));
+
+
         System.out.println(Joiner.on(":").skipNulls().join(list1));
-        System.out.println(list1.stream().filter(o->o!=null).collect(Collectors.joining(";")));
+        System.out.println(list1.stream().filter(o -> o != null).collect(Collectors.joining(";")));
 
     }
+
+
+    public static Set segment(String text) throws Exception {
+
+        Set<String> set = new HashSet<>();
+
+        StringReader re = new StringReader(text.trim());
+
+        IKSegmenter ik = new IKSegmenter(re, true);
+
+        Lexeme lex;
+
+        while ((lex = ik.next()) != null) {
+
+            set.add(lex.getLexemeText().toUpperCase());
+
+        }
+
+        return set;
+
+    }
+
+    /**
+     * 将驼峰转换成下划线形式
+     *
+     * @param str
+     * @return
+     */
+    private static String humpToLine(String str) {
+        Pattern humpPattern = Pattern.compile("[A-Z]");
+        Matcher matcher = humpPattern.matcher(str);
+        StringBuffer sb = new StringBuffer();
+        while (matcher.find()) {
+            matcher.appendReplacement(sb, "_" + matcher.group(0).toLowerCase());
+        }
+        matcher.appendTail(sb);
+        return sb.toString();
+    }
+
+    private static Pattern linePattern = Pattern.compile("_(\\w)");
+
+    /**
+     * 下划线转驼峰
+     */
+    public static String lineToHump(String str) {
+        //大小转小写
+        str = str.toLowerCase();
+        Matcher matcher = linePattern.matcher(str);
+        StringBuffer sb = new StringBuffer();
+        while (matcher.find()) {
+            matcher.appendReplacement(sb, matcher.group(1).toUpperCase());
+        }
+        matcher.appendTail(sb);
+        return sb.toString();
+    }
+
+    //        //驼峰转下划线
+//        List<String> nameList = new ArrayList<>();
+//        if (!CollectionUtils.isEmpty(so.getVehicleAttributeList())) {
+//            for (VehicleAttribute vehicleAttribute : so.getVehicleAttributeList()) {
+//                if (vehicleAttribute == null) {
+//                    continue;
+//                }
+//                nameList.add(vehicleAttribute.getAttributeName());
+//                vehicleAttribute.setAttributeName(humpToLine(vehicleAttribute.getAttributeName()));
+//            }
+//        }
+//
+    /**
+     * Joiner 分隔list转string
+     */
+//        if (!CollectionUtils.isEmpty(nameList)){
+//            //表头英文逗号相隔开
+//            formCommonsVo.setFormHead(Joiner.on(",").join(nameList));
+//        }
+
 }

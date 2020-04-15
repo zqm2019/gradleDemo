@@ -5,7 +5,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/zqm?useUnicode=true&characterEncoding=UTF-8
     username: root
-    password: 12345678
+    password:
     connectionInitSqls: SET NAMES utf8mb4
     driverClassName: com.mysql.jdbc.Driver
     mapperLocations: classpath*:mapper/**/*Mapper.xml
@@ -15,7 +15,7 @@ spring:
 # You can change the default http port
 server:
   port: 8081
-  contextPath: /zqm   # 配置后bootRun，访问时要http://localhost:8080/zqm
+  contextPath: /zqm   # 配置后bootRun，访问时要http://localhost:8081/zqm
 
 #logging:
 #  level:

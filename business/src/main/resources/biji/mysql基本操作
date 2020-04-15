@@ -18,6 +18,8 @@ alter table 原表名 rename 现表名
 
 //删除表
 drop table name
+//多表删除
+drop table name,name2
 
 //删除表数据
 TRUNCATE TABLE name
