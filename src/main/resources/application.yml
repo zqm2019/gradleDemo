@@ -12,6 +12,12 @@ spring:
 
 
 
+
+  cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719
 # You can change the default http port
 server:
   port: 8081

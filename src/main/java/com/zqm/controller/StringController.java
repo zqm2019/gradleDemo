@@ -1,9 +1,6 @@
 
 package com.zqm.controller;
 
-import com.carrotsearch.sizeof.RamUsageEstimator;
-import com.google.common.base.Joiner;
-import org.hibernate.mapping.Join;
 import org.wltea.analyzer.core.IKSegmenter;
 import org.wltea.analyzer.core.Lexeme;
 
@@ -12,7 +9,6 @@ import java.math.BigDecimal;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 /**
  * 字符串测试类
@@ -133,35 +129,35 @@ public class StringController {
      * lang3.StringUtils.isBlank 是否是空白 可以
      */
 
-    public static void main(String[] args) throws Exception {
-
-        System.out.println(segment("A4"));
-        int[] s = new int[1024];
-        System.out.println("size(s):" + RamUsageEstimator.humanSizeOf(s));
-        //将list转字符串
-        List<String> list1 = Arrays.asList(
-                "Google", "Guava", "Java", "Scala", "", null);
-        System.out.println("size(s):" + RamUsageEstimator.humanSizeOf(list1));
-        System.out.println("size(s):" + RamUsageEstimator.humanSizeOf("java"));
-        System.out.println("size(s):" + RamUsageEstimator.humanSizeOf("Guava"));
-
-        System.out.println("size(s):" + RamUsageEstimator.humanSizeOf("Google"));
-
-        System.out.println("size(s):" + RamUsageEstimator.humanSizeOf("Scala"));
-        System.out.println("size(s):" + RamUsageEstimator.humanSizeOf(null));
-
-
-        System.out.println(lineToHump("band_name"));
-        //跳过null的凭借，注意，最后一个字符不能为null，否则空指针
-        System.out.println(Joiner.on(";").skipNulls().join("dfd", "dfs", null, ""));
-        //字符串拼接，把null转换成制定的00
-        System.out.println(Joiner.on(";").useForNull("00").join("dfd", "dfs", "", null));
-
-
-        System.out.println(Joiner.on(":").skipNulls().join(list1));
-        System.out.println(list1.stream().filter(o -> o != null).collect(Collectors.joining(";")));
-
-    }
+//    public static void main(String[] args) throws Exception {
+//
+//        System.out.println(segment("A4"));
+//        int[] s = new int[1024];
+//        System.out.println("size(s):" + RamUsageEstimator.humanSizeOf(s));
+//        //将list转字符串
+//        List<String> list1 = Arrays.asList(
+//                "Google", "Guava", "Java", "Scala", "", null);
+//        System.out.println("size(s):" + RamUsageEstimator.humanSizeOf(list1));
+//        System.out.println("size(s):" + RamUsageEstimator.humanSizeOf("java"));
+//        System.out.println("size(s):" + RamUsageEstimator.humanSizeOf("Guava"));
+//
+//        System.out.println("size(s):" + RamUsageEstimator.humanSizeOf("Google"));
+//
+//        System.out.println("size(s):" + RamUsageEstimator.humanSizeOf("Scala"));
+//        System.out.println("size(s):" + RamUsageEstimator.humanSizeOf(null));
+//
+//
+//        System.out.println(lineToHump("band_name"));
+//        //跳过null的凭借，注意，最后一个字符不能为null，否则空指针
+//        System.out.println(Joiner.on(";").skipNulls().join("dfd", "dfs", null, ""));
+//        //字符串拼接，把null转换成制定的00
+//        System.out.println(Joiner.on(";").useForNull("00").join("dfd", "dfs", "", null));
+//
+//
+//        System.out.println(Joiner.on(":").skipNulls().join(list1));
+//        System.out.println(list1.stream().filter(o -> o != null).collect(Collectors.joining(";")));
+//
+//    }
 
 
     public static Set segment(String text) throws Exception {
@@ -230,6 +226,7 @@ public class StringController {
 //            }
 //        }
 //
+
     /**
      * Joiner 分隔list转string
      */
@@ -237,5 +234,27 @@ public class StringController {
 //            //表头英文逗号相隔开
 //            formCommonsVo.setFormHead(Joiner.on(",").join(nameList));
 //        }
+    public static void testSplit(String str) {
+        //去除空格trim()是去掉首尾空格
+        //2.str.replace(" ", ""); 去掉所有空格，包括首尾、中间
+        //str = .replaceAll("\\s*", "")
+        //或者replaceAll(" +",""); 去掉所有空格
+        str = str.trim();
+//        String s = ;
+        String s1 = str.replaceAll("\\s*","");
+        //中英文逗号分开
+        List<String> oeList = Arrays.asList(str.toUpperCase().replace(" ","").split(",|，"));
+        System.out.println(oeList);
+//        System.out.println( Arrays.asList(s.split(",|，")));
+        System.out.println( Arrays.asList(s1.split(",|，")));
+
+
+    }
+
+    public static void main(String[] args) {
+        testSplit("wo    是，zho ng,国人");
+    }
+
+
 
 }

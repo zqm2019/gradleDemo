@@ -1,21 +1,20 @@
 
 package com.zqm.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import com.google.common.collect.Lists;
+import com.zqm.aop.interceptor.HanderTime;
+import com.zqm.config.ListProperties;
+import com.zqm.service.YamlTestAaList;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.common.collect.Lists;
-import com.zqm.aop.interceptor.HanderTime;
-import com.zqm.service.aalist;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * list 使用
@@ -28,13 +27,16 @@ import lombok.NoArgsConstructor;
 public class ListController {
 
     @Autowired
-    private aalist aalist;
+    private YamlTestAaList YamlTestAaList;
+    @Autowired
+    private ListProperties listProperties;
 
     @HanderTime
     @RequestMapping("test")
     public Object testList() {
-
-        return aalist.getList();
+        Integer a =YamlTestAaList.getModuleCategoryMap().getOrDefault(1,0);
+        listProperties.getList();
+        return YamlTestAaList.getMyList();
     }
 
 

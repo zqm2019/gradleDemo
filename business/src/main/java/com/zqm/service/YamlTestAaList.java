@@ -3,11 +3,14 @@
  */
 package com.zqm.service;
 
-import java.util.List;
-
+import com.zqm.config.YamFactory;
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * ConfigurationProperties 注入一个类，对象 --支持宽松绑定
@@ -28,26 +31,16 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-@PropertySource("classpath:aalist.yml")
+@PropertySource(value = "classpath:aalist.yml",factory = YamFactory.class)
 @ConfigurationProperties(prefix = "aalist")
-
-public class aalist {
+@Data
+public class YamlTestAaList {
     private String name;
     private List<String> myList;
+    private Integer [] arrays;
+    private Map<String,String> valueMap;
+    private List<Map<String,String>> mapList;
+    private Map<Integer,Integer> moduleCategoryMap;
+    private Map<String,Integer> submoduleCategoryMap;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<String> getList() {
-        return myList;
-    }
-
-    public void setList(List<String> list) {
-        this.myList = list;
-    }
 }

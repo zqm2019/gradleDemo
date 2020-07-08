@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  */
 @Getter
 @Setter
-public class c {
+public class AttributeVo {
 
     private static final long serialVersionUID = -6920934492324729614L;
 
@@ -39,23 +39,29 @@ public class c {
      */
     private String attributeValue;
 
+    public AttributeVo(Integer attributeId) {
+        this.attributeId = attributeId;
+    }
+
+    public AttributeVo(){}
+
     @Override
     public String toString() {
         return attributeName + ':' + attributeValue + ' ';
     }
 
     public static void main(String[] args) {
-        List<c> attributeList = new ArrayList<>();
-        c tdCspuDetailSo = new c();
+        List<AttributeVo> attributeList = new ArrayList<>();
+        AttributeVo tdCspuDetailSo = new AttributeVo();
         tdCspuDetailSo.setAttributeId(20000);
         tdCspuDetailSo.setAttributeValueId(218);
-        c tdCspuDetailSo1 = new c();
+        AttributeVo tdCspuDetailSo1 = new AttributeVo();
         tdCspuDetailSo1.setAttributeId(20001);
         tdCspuDetailSo1.setAttributeValueId(218);
         attributeList.add(tdCspuDetailSo1);
         attributeList.add(tdCspuDetailSo);
         System.out.println(JSON.toJSONString(attributeList));
-        attributeList.stream().sorted(Comparator.comparing(c::getAttributeId)).collect(Collectors.toList());
+        attributeList.stream().sorted(Comparator.comparing(AttributeVo::getAttributeId)).collect(Collectors.toList());
         System.out.println(JSON.toJSONString(attributeList));
 
 
