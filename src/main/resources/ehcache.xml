@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2017. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  ~ Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+  ~ Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+  ~ Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+  ~ Vestibulum commodo. Ut rhoncus gravida arcu.
+  -->
+
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd">
+
+<!--  这个是磁盘存储路径，当内存缓存满了的时候，就会往这里面放，-->
+<!--  user.home是操作系统缓存的临时目录，不同操作系统缓存目录不一样。-->
+    <diskStore path="user.home"/>
+
+
+    <defaultCache maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="30" timeToLiveSeconds="30"
+                  overflowToDisk="false">
+    </defaultCache>
+    <!-- 
+        配置自定义缓存
+        maxElementsInMemory：缓存中允许创建的最大对象数
+        eternal：缓存中对象是否为永久的，如果是，超时设置将被忽略，对象从不过期。
+        timeToIdleSeconds：(单位是秒)缓存数据的钝化时间，也就是在一个元素消亡之前，
+                    两次访问时间的最大时间间隔值，这只能在元素不是永久驻留时有效，
+                    如果该值是 0 就意味着元素可以停顿无穷长的时间。
+        timeToLiveSeconds：缓存数据的生存时间，也就是一个元素从构建到消亡的最大时间间隔值，
+                    这只能在元素不是永久驻留时有效，如果该值是0就意味着元素可以停顿无穷长的时间。
+        overflowToDisk：内存不足时，是否启用磁盘缓存。
+        memoryStoreEvictionPolicy：缓存满了之后的淘汰算法。
+        缓存的3 种清空策略 ：
+           FIFO ，first in first out (先进先出).
+           LFU ， Less Frequently Used (最少使用).意思是一直以来最少被使用的。缓存的元素有一个hit 属性，hit 值最小的将会被清出缓存。
+           LRU ，Least Recently Used(最近最少使用). (ehcache 默认值).缓存的元素有一个时间戳，当缓存容量满了，而又需要腾出地方来缓存新的元素的时候，那么现有缓存元素中时间戳离当前时间最远的元素将被清出缓存。
+    -->
+    <cache name="getString"
+           maxElementsInMemory="100000"
+           overflowToDisk="false"
+           timeToIdleSeconds="20"
+           timeToLiveSeconds="36000"
+           memoryStoreEvictionPolicy="LFU">
+    </cache>
+    <cache name="other"
+           maxElementsInMemory="100000"
+           overflowToDisk="false"
+           timeToIdleSeconds="3600"
+           timeToLiveSeconds="36000"
+           memoryStoreEvictionPolicy="LFU">
+    </cache>
+</ehcache>

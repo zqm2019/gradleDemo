@@ -18,7 +18,16 @@ spring:
       transport:
         dashboard: localhost:8080
         port: 8719
-# You can change the default http port
+  #配置本地redis
+  redis:
+    host: localhost
+    port: 6379
+
+ #配置缓存文件
+  cache:
+    ehcache:
+      config: ehcache.xml
+
 server:
   port: 8081
   contextPath: /zqm   # 配置后bootRun，访问时要http://localhost:8081/zqm
@@ -28,6 +37,7 @@ server:
 #    ROOT: INFO
 
 debug: true
+
 
 
 executorPool:

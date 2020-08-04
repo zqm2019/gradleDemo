@@ -1,19 +1,13 @@
 package com.zqm.controller;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.FutureTask;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-
+import com.zqm.executor.AsyncExecutorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.support.TransactionSynchronizationAdapter;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.zqm.executor.AsyncExecutorService;
+import java.util.concurrent.*;
 
 /**
  * 线程相关测试
@@ -54,6 +48,7 @@ public class ThreadTestController {
     }
 
     public static void createNewThread() {
+        //匿名函数方式
 //        Thread thread = new Thread(new Runnable() {
 //            @Override
 //            public void run() {
@@ -103,7 +98,7 @@ public class ThreadTestController {
         System.out.println("FutureTask 获取执行结果:" + taskGet);
 
         //设置超时时间
-        String ta = futureTask.get(0, TimeUnit.MICROSECONDS);
+        String ta = futureTask.get(1, TimeUnit.MICROSECONDS);
 
         System.out.println(ta);
 
@@ -114,8 +109,36 @@ public class ThreadTestController {
         @Override
         public String call() throws Exception {
             return "my name is callable";
+            //事务之后异步操作
+//            TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter(){
+//                @Override
+//                public void afterCommit() {
+//                    asyncExecutorService.execute();
+//                }
+//            });
         }
     }
 
+    private final ExecutorService executorService = Executors.newFixedThreadPool(5);
+
+    public void insert(Object techBook) {
+//        insert(techBook);
+        //事务
+
+//        send after tx commit but is async
+        TransactionSynchronizationManager.registerSynchronization(
+                new TransactionSynchronizationAdapter() {
+                    @Override
+                    public void afterCommit() {
+                        executorService.submit(new Runnable() {
+                            @Override
+                            public void run() {
+                                //do you what you want
+                            }
+                        });
+                    }
+                }
+        );
+    }
 
 }
