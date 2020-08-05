@@ -10,20 +10,18 @@ package com.zqm.utils;
  * @author zhaqianming
  */
 
+import com.zqm.constant.Constants;
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.joda.time.format.DateTimeFormat;
+import org.springframework.util.StringUtils;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
-
-import org.springframework.util.StringUtils;
 
 /**
  * 日期相关工具类
@@ -284,6 +282,82 @@ public class DateUtils {
     public static boolean aBeforeB(String a, String b, DateTimeFormatter dateTimeFormatter) {
         return LocalDateTime.parse(a, dateTimeFormatter)
                 .isBefore(LocalDateTime.parse(b, dateTimeFormatter));
+    }
+
+
+    /**
+     * 获取距离今天第n天的零点 正数->今天之后天数  负数->今天之前的日期
+     *
+     * @param intervalDay
+     * @return
+     */
+    public static String getStartTimeByIntervalDay(int intervalDay) {
+        //当天零点
+        LocalDateTime todayStart = LocalDateTime.of(LocalDate.now().plusDays(intervalDay), LocalTime.MIN);
+        return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(todayStart);
+
+    }
+
+
+    /**
+     * 获取距离今天第n天的零点 正数->今天之后天数  负数->今天之前的日期
+     *
+     * @param intervalDay
+     * @return
+     */
+    public static String getEndTimeByIntervalDay(int intervalDay) {
+        //当天零点
+        LocalDateTime todayEnd = LocalDateTime.of(LocalDate.now().plusDays(intervalDay), LocalTime.MAX);
+        return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(todayEnd);
+    }
+
+    /**
+     * 获取两个时间的时间差
+     *
+     * @param date1
+     * @param date2
+     * @return
+     */
+    public static String getDaysDiff(Date date1, Date date2) {
+        long diff;
+        if (date1.compareTo(date2) > 0) {
+            diff = date1.getTime() - date2.getTime();
+        } else {
+            diff = date2.getTime() - date1.getTime();
+        }
+
+        long day = diff / (Constants.HOUR * Constants.MINUTE * Constants.MINUTE * Constants.MILLIMETER);
+        long hour = (diff / (Constants.MINUTE * Constants.MINUTE * Constants.MILLIMETER - day * Constants.HOUR));
+        long min = ((diff / (Constants.MINUTE * Constants.MILLIMETER)) - day * Constants.HOUR * Constants.MINUTE - hour * Constants.MINUTE);
+        StringBuilder stringBuilder = new StringBuilder();
+        if (day > 0) {
+            stringBuilder.append(day).append("天");
+        }
+        if (hour > 0) {
+            stringBuilder.append(hour).append("小时");
+        }
+        if (min > 0) {
+            stringBuilder.append(min).append("分");
+        }
+        return stringBuilder.toString();
+    }
+
+    /**
+     * 获取指定日期的当天最大时间
+     * @param date
+     * @param format
+     * @return
+     */
+    public static String getMaxTimeByDateString(String date, String format){
+        return DateFormatUtils.format(parseDate(date,format), "yyyy-MM-dd 23:59:59");
+    }
+    public static String getMinTimeByDateString(String date, String format){
+        return DateFormatUtils.format(parseDate(date,format), "yyyy-MM-dd 00:00:00");
+    }
+
+
+    public static Date parseDate(String dateStr, String format) {
+        return DateTimeFormat.forPattern(format).parseDateTime(dateStr).toDate();
     }
 
 }

@@ -114,6 +114,23 @@ dependencies {
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
     // https://mvnrepository.com/artifact/ma.glasnost.orika/orika-core
     compile group: 'ma.glasnost.orika', name: 'orika-core', version: '1.5.4'
+    // https://mvnrepository.com/artifact/com.janeluo/ikanalyzer
+    compile group: 'com.janeluo', name: 'ikanalyzer', version: '2012_u6'
+
+    //sentinel
+    compile 'com.alibaba.csp:sentinel-core:1.7.1'
+    //控制台
+    compile 'com.alibaba.csp:sentinel-transport-simple-http:1.7.1'
+    // https://mvnrepository.com/artifact/com.alibaba.csp/sentinel-annotation-aspectj 切面
+    compile group: 'com.alibaba.csp', name: 'sentinel-annotation-aspectj', version: '1.7.2'
+    // https://mvnrepository.com/artifact/joda-time/joda-time
+    compile group: 'joda-time', name: 'joda-time', version: '2.10.6'
+    // https://mvnrepository.com/artifact/org.apache.shiro/shiro-core
+    compile group: 'org.apache.shiro', name: 'shiro-core', version: '1.5.3'
+    compile group: 'net.sf.ehcache', name: 'ehcache', version: '2.10.4'
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: '2.3.2.RELEASE'
+
 
 
 

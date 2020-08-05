@@ -28,6 +28,9 @@ git config --global credential.helper store
 
 git config --list	// 查看配置信息
 
+--查看
+git config user.name
+git config user.email
 --本项目的
 git config user.name myName	// 自己的用户名
 git config user.email myEmail	// 自己的邮箱

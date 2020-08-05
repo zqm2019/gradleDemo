@@ -1,17 +1,12 @@
 
 package com.zqm.executor;
 
-import javax.annotation.PostConstruct;
-
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import java.util.concurrent.*;
 
 /**
  * 异步任务执行器
@@ -37,7 +32,12 @@ public class AsyncExecutorService {
 
     @PostConstruct
     public void init() {
-        executorService = new ThreadPoolExecutor(executorCoreSize, executorMaxPoolSize, keepAliveSeconds, TimeUnit.SECONDS, new LinkedBlockingDeque<>(queueCapacity));
+//        executorService = new ThreadPoolExecutor(executorCoreSize, executorMaxPoolSize, keepAliveSeconds,
+//                TimeUnit.SECONDS, new LinkedBlockingDeque<>(queueCapacity));
+        //推荐使用自定义线程池名字，方便出错回溯
+        executorService = new ThreadPoolExecutor(executorCoreSize, executorMaxPoolSize, keepAliveSeconds,
+                TimeUnit.SECONDS, new LinkedBlockingDeque<>(queueCapacity),new ThreadFactoryBuilder()
+                .setNameFormat("zqm-pool-%d").build());
     }
 
     /**

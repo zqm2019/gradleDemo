@@ -18,6 +18,8 @@ alter table 原表名 rename 现表名
 
 //删除表
 drop table name
+//多表删除
+drop table name,name2
 
 //删除表数据
 TRUNCATE TABLE name
@@ -27,7 +29,7 @@ delete from name  --可以回滚
 //批量更新格式化
 update t_poster_base set poster_image = replace(poster_image,"httpsm","https://m")
 // 添加字段
-alter table `bargain_detail` add `p_value` varchar(11) not null default '' comment '指定p值'; --
+alter table `bargain_detail` add `p_value` varchar(11) not null default '' comment '指定p值' After id; --
 alter table `bargain_detail` add `new_member`  tinyint(1) not null default '0' comment '是否是新会员:1是0否';--boolean型
 在mysql数据库中怎样在指定的一个字段后面添加一个字段：
 alter table newexample add address varchar(110) after stu_id;
@@ -66,6 +68,7 @@ desc tableName
 //用户昵称中存在emoji表情，调用jdbc往mysql数据库插入的时候抛出异常 java.sql.SQLException: Incorrect string value: '\xF0\x9F\x90\x9B'
 //mysql存储emojo表情 ----将表中对应的字段字符集是修改为utf8mb4
 ALTER TABLE wx_contact DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci; --修改标的默认字符集
+ALTER TABLE fullinfo_car_model_ext DEFAULT CHARACTER SET utf8mb4;
 
 如果是修改表的字符集，需注意一点 字符集的约束关系   列级>表级>库级
 show full columns from table; --查看对应的table表中所有列级属性的字符集

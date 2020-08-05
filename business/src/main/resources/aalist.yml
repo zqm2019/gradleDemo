@@ -1,5 +1,47 @@
 aalist:
+  #对应字符串
   name: zha
+  #对用list
   myList:
     - a
     - b
+  #对应数组
+  arrays: 1,2,3
+  #对应map
+  valueMap:
+    name: zqm
+    age: 20
+    sex: male
+  #对应list<map>
+  mapList:
+    - name: mm
+      age: 21
+    - name: ll
+      age: 22
+  submoduleCategoryMap:
+    yxzl-fdj-jyl: 1000015
+    yxzl-fdj-zspd: 1000014
+    yxzl-by-fdy: 1000018
+    yxzl-zd-hpan: 1000027
+    yxzl-zd-hpian: 1000023
+    yxzl-qx-ktgl: 1000036
+    yxzl-hx-kt: 1000017
+    yxzl-fdj-kql: 1000016
+    yxzl-zd-qpan: 1000026
+    yxzl-zd-qpian: 1000022
+    yxzl-fdj-hhs: 1000011
+    yxzl-fdj-ryl: 1000024
+    yxzl-zd-shacheyou: 1000019
+    yxzl-fsy-zxy: 1000028
+    yxzl-fj-ygp: 1000021
+    yxzl-dp-qjzq: 1000032
+    yxzl-dp-hjzq: 1000033
+    yxzl-dq-xdc: 1000010
+    yxzl-by-lm: 1000034
+    yxzl-qx-bsx: 1000040
+    yxzl-qx-dlzx: 1000035
+    yxzl-fdj-fjpd: 1000013
+    yxzl-qx-ryxt: 1000011
+    yxzl-qx-jpqxt: 1000020
+    yxzl-qx-fdjct: 1000031
+    yxzl-qx-lqxt: 1000030

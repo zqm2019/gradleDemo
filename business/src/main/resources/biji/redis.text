@@ -1,0 +1,25 @@
+//启动:
+redis-server /usr/local/etc/redis.conf
+//关闭:
+sudo pkill redis-server
+//打开连接:
+redis-cli
+//查看redis里面的缓存key:
+ keys *
+//查看指定key(可以多个)是否存在返回个数
+ EXISTS key
+eg: EXISTS strKey1  strKey2
+//模糊查询key支持左右模糊:
+ keys *key*
+//查看key的值
+GET key
+//查看多个key
+mget key1 key2
+//添加key-value
+set key1 key1
+//删除key支持多个key同时删除
+del Key
+
+
+
+

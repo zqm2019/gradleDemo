@@ -79,6 +79,7 @@ dependencies {
         exclude module: 'org.springframework.boot:spring-boot-starter-logging'
     }
 
+
   //  testCompile 'org.springframework.boot:spring-boot-starter-test'
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
    //compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.35'
@@ -98,6 +99,14 @@ dependencies {
     compile 'org.springframework:spring-core:4.3.13.RELEASE'
 
     compile 'com.google.guava:guava:26.0-jre'
+    //sentinel
+    compile 'com.alibaba.csp:sentinel-core:1.7.1'
+    //控制台
+    compile 'com.alibaba.csp:sentinel-transport-simple-http:1.7.1' 
+    // https://mvnrepository.com/artifact/com.alibaba.csp/sentinel-annotation-aspectj 切面
+    compile group: 'com.alibaba.csp', name: 'sentinel-annotation-aspectj', version: '1.7.2'
+//    compile group: 'net.sf.ehcache', name: 'ehcache', version: '1.0.1'
+
 
 
 //

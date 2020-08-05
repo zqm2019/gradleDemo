@@ -9,11 +9,28 @@ import java.util.Date;
 public class Person implements Serializable {
     private static final long serialVersionUID = 4305013886991449314L;
     private int id;
-    private String username;// 用户姓名
-    private String sex;// 性别
+    /**
+     * 用户姓名
+     */
+    private String username;
+    /**
+     * 性别
+     */
+    private String sex;
     private int age;
-    private Date birthday;// 生日
+    /**
+     * 生日
+     */
+    private Date birthday;
     private String name;
 
+    public Person() {
+    }
+
+    public Person(int id, String username, Date birthday) {
+        this.id = id;
+        this.username = username;
+        this.birthday = birthday;
+    }
 }
 
