@@ -1,0 +1,42 @@
+ 1. 响应时间(RT)
+ 　　响应时间是指系统对请求作出响应的时间
+ 2. 吞吐量(Throughput)
+      吞吐量是指系统在单位时间内处理请求的数量。
+ 3. 并发用户数
+ 　　并发用户数是指系统可以同时承载的正常使用系统功能的用户的数量。
+ 4. QPS每秒查询率(Query Per Second)
+ 　　每秒查询率QPS是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准，
+    在因特网上，作为域名系统服务器的机器的性能经常用每秒查询率来衡量。
+
+ //规则的配置含义
+  1.系统
+   -- 负载能力
+     private double highestSystemLoad = -1;
+      /**
+       * cpu usage, between [0, 1]
+       */
+    -- cpu负载
+      private double highestCpuUsage = -1;
+   -- qps
+      private double qps = -1;
+   -- 平局响应时间
+      private long avgRt = -1;
+   -- 最大线程数
+      private long maxThread = -1;
+
+ 2.flow
+ resource	资源名，资源名是限流规则的作用对象
+ count	限流阈值
+ grade	限流阈值类型，默认1 0: thread count, 1: QPS
+ limitApp	流控针对的调用来源	default，代表不区分调用来源
+ strategy	判断的根据是资源自身，还是根据其它关联资源 (refResource)，还是根据链路入口	根据资源本身
+ controlBehavior 流控效果（直接拒绝/排队等待/慢启动模式）默认0 0. default(reject directly), 1. warm up, 2. rate limiter, 3. warm up + rate limiter
+
+ 3.degrade
+  resource  资源名称
+  grade：熔断降级的模式，有平均响应时间、异常比例、异常数。
+  count：发生熔断降级的阈值。
+  timeWindow：发生熔断降级后持续的时间。
+  minRequestAmount：每秒连续进入的请求发生异常不熔断降级的最小阈值。
+  rtSlowRequestAmount：每秒连续进入的请求平均响应时间超过阈值的数量
+

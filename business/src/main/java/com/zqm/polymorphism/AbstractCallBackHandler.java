@@ -1,12 +1,12 @@
 
 package com.zqm.polymorphism;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * node层回调处理
@@ -37,7 +37,7 @@ public abstract class AbstractCallBackHandler implements ApplicationContextAware
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
+        AbstractCallBackHandler.applicationContext = applicationContext;
     }
 
     public abstract void buildCall(String strContent, AbstractCallBackHandler abstractCallBackHandler);

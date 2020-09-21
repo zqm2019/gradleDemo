@@ -18,6 +18,35 @@ spring:
       transport:
         dashboard: localhost:8080
         port: 8719
+      datasource:
+        flow:
+          file:
+            # 文件规则数据源
+            file:
+              classpath: flowrule.json
+            ## JSON格式的数据
+            data-type: json
+            ## 规则类型
+            rule-type: flow
+        degrade:
+          file:
+            # 文件规则数据源
+            file:
+              classpath: degraderule.json
+            ## JSON格式的数据
+            data-type: json
+            ## 规则类型
+            rule-type: degrade
+        system:
+          file:
+            # 文件规则数据源
+            file:
+              classpath: system.json
+            ## JSON格式的数据
+            data-type: json
+            ## 规则类型
+            rule-type: system
+
   #配置本地redis
   redis:
     host: localhost

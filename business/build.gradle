@@ -130,8 +130,11 @@ dependencies {
     compile group: 'net.sf.ehcache', name: 'ehcache', version: '2.10.4'
 // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: '2.3.2.RELEASE'
-
-
-
+    // https://mvnrepository.com/artifact/cn.afterturn/easypoi-base 处理表格
+    compile group: 'cn.afterturn', name: 'easypoi-base', version: '3.0.3'
+    // https://mvnrepository.com/artifact/cn.afterturn/easypoi-web
+    compile group: 'cn.afterturn', name: 'easypoi-web', version: '3.0.3'
+    // https://mvnrepository.com/artifact/cn.afterturn/easypoi-annotation
+    compile group: 'cn.afterturn', name: 'easypoi-annotation', version: '3.0.3'
 
 }
