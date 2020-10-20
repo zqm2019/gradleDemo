@@ -44,4 +44,11 @@ public enum DatumAdaptCategoryEnum {
     public static Map<Integer,Integer> getMap(){
         return map;
     }
+
+    public static Integer getAdaptIdByCategoryId(String enumName) {
+        //根据枚举名称来回去枚举
+        //enumType.enumConstantDirectory() 获取一个枚举名称和枚举的Map
+        return Enum.valueOf(DatumAdaptCategoryEnum.class, String.valueOf(enumName)).getAdaptCategoryId();
+    }
+
 }
