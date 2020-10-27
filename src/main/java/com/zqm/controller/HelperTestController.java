@@ -41,7 +41,7 @@ public class HelperTestController {
     }
 
     @GetMapping("testD")
-    public String testD() {
+    public String testD() throws InstantiationException, IllegalAccessException {
         Helper d = HelperApplication.getHelper();
         return d.run();
     }

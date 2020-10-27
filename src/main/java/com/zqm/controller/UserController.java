@@ -1,26 +1,24 @@
 
 package com.zqm.controller;
 
-import javax.annotation.Resource;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-
+import com.google.common.collect.Lists;
+import com.zqm.dao.entity.TNewsInfo;
+import com.zqm.dao.entity.TUserInfo;
+import com.zqm.dao.mapper.OneToMany;
+import com.zqm.service.UserService;
+import com.zqm.vo.OneToManyVo;
+import com.zqm.vo.UserBaseInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.common.collect.Lists;
-import com.zqm.dao.entity.TNewsInfo;
-import com.zqm.dao.entity.TUserInfo;
-import com.zqm.dao.mapper.OneToMany;
-import com.zqm.dao.mapper.TCommentInfoMapper;
-import com.zqm.service.UserService;
-import com.zqm.vo.OneToManyVo;
-import com.zqm.vo.UserBaseInfo;
+import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * TODO: description
@@ -38,6 +36,15 @@ public class UserController {
 
     @Resource
     private OneToMany oneToMany;
+
+    /**
+     * Autowired支持list和map注入，map的key必须是string，且是bean的名字
+     */
+    @Autowired
+    private List<UserService> userServiceList;
+
+    @Autowired
+    private Map<String,UserService> userServiceMap;
 
     @RequestMapping("insert")
     public String insertUserInfo(@RequestBody TUserInfo tUserInfo) {

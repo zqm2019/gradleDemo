@@ -136,5 +136,6 @@ dependencies {
     compile group: 'cn.afterturn', name: 'easypoi-web', version: '3.0.3'
     // https://mvnrepository.com/artifact/cn.afterturn/easypoi-annotation
     compile group: 'cn.afterturn', name: 'easypoi-annotation', version: '3.0.3'
+    compile group: 'org.apache.lucene', name: 'lucene-core', version: '8.6.3'
 
 }
