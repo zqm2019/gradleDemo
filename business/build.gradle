@@ -137,5 +137,7 @@ dependencies {
     // https://mvnrepository.com/artifact/cn.afterturn/easypoi-annotation
     compile group: 'cn.afterturn', name: 'easypoi-annotation', version: '3.0.3'
     compile group: 'org.apache.lucene', name: 'lucene-core', version: '8.6.3'
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
+    compile group: 'org.apache.httpcomponents', name: 'httpcore', version: '4.4.13'
 
 }
