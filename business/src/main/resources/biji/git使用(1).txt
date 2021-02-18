@@ -118,6 +118,12 @@ limit：条数，测你那个接口先试试100
 比较：失败次数，和点击diff，查看不同的地方。是否加了你想要或改变的东西。
 
 
+gitignore 不生效的解决方案
+git rm -r --cached .  (git rm -r -f --cached .  强制删除缓存)
+git add .
+git commit -m "update .gitignore"
+
+
 
 
 

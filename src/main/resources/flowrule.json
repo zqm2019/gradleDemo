@@ -1,0 +1,20 @@
+[
+  {
+    "resource": "doSomething",
+    "controlBehavior": 0,
+    "count": 1,
+    "grade": 1,
+    "limitApp": "default",
+    "strategy": 0
+  },
+  {
+    "resource": "example",
+    "controlBehavior": 0,
+    "count": 50,
+    "grade": 1,
+    "limitApp": "default",
+    "strategy": 0
+  }
+
+
+]

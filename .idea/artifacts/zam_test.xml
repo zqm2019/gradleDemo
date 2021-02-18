@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="zam_test">
+    <output-path>$PROJECT_DIR$/../zam_test</output-path>
+    <root id="archive" name="zam_test.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

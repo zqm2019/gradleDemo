@@ -5,7 +5,7 @@ import ma.glasnost.orika.MapperFactory;
 import org.springframework.stereotype.Component;
 
 /**
- * @describe:
+ * @describe: 对象的属性映射，跟对象的顺序位置无关。
  * @author:zqm
  */
 @Component

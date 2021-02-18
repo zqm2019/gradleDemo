@@ -3,9 +3,11 @@
  */
 package com.zqm.polymorphism.subscribe;
 
-import java.util.Date;
-
 import javafx.util.Pair;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.MutablePair;
+
+import java.util.Date;
 
 /**
  * 消息订阅抽象类
@@ -29,5 +31,36 @@ public abstract class AbstractSubscribe {
      */
     abstract Pair<Object, Date> buildSubscribeMessage(String subscribeContent);
 
+    public static void main(String[] args) {
+        Pair<Boolean, String> pair = testPair();
+        System.out.println(pair.getKey());
+        System.out.println(pair.getValue());
+        System.out.println(testMutablePair().getLeft());
+
+    }
+
+    public static Pair<Boolean,String> testPair(){
+        Pair<Boolean,String> pair = new Pair<Boolean,String>(false,"ll");
+        return pair;
+    }
+
+    /**
+     * 不可改变
+     * @return
+     */
+    public static ImmutablePair<Boolean,String> testImmutablePair(){
+        ImmutablePair<Boolean,String> pair = new ImmutablePair<Boolean,String>(false,"ll");
+        return pair;
+    }
+
+    /**
+     * 可改变的pair
+     * @return
+     */
+    public static MutablePair<Boolean,String> testMutablePair(){
+        MutablePair<Boolean,String> pair = new MutablePair<Boolean,String>(false,"ll");
+        pair.setLeft(true);
+        return pair;
+    }
 
 }

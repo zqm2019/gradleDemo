@@ -2,10 +2,14 @@ package com.zqm.vo;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * @author zhaqianming
+ */
 @Data
 public class User implements Serializable {
 
@@ -29,6 +33,7 @@ public class User implements Serializable {
 
     private BigDecimal high;
 
+    @NotNull(message = "lll不能为空")
     private String lll;
 
 }

@@ -37,4 +37,29 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
         registry.addInterceptor(myInterceptor1());
         super.addInterceptors(registry);
     }
+
+
+    /**
+     * 统一异常处理
+     *
+     * @param exceptionResolvers
+     */
+//    @Override
+//    public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
+//        exceptionResolvers.add(()->{
+//
+//        });
+//    }
+//
+//
+//    private void responseResult(HttpServletResponse response, Result result) {
+//        response.setCharacterEncoding("UTF-8");
+//        response.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON.toString());
+//        response.setStatus(200);
+//        try {
+//            response.getWriter().write(JSON.toJSONString(result));
+//        } catch (IOException e) {
+//            logger.error(e.getMessage(), e);
+//        }
+//    }
 }
