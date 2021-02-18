@@ -30,26 +30,27 @@ public class DownLoadController {
         try {
             String nowTimeString = "ll";
             //文件的名称
-            String downloadFilename = nowTimeString + ".zip";
+            String downloadFilename = nowTimeString + ".rar";
             //转换中文否则可能会产生乱码
             downloadFilename = URLEncoder.encode(downloadFilename, "UTF-8");
             // 指明response的返回对象是文件流
             response.setContentType("application/octet-stream");
             // 设置在下载框默认显示的文件名
             response.setHeader("Content-Disposition", "attachment;filename=" + downloadFilename);
+//            服务端向客户端游览器发送文件时，如果是浏览器支持的文件类型，一般会默认使用浏览器打开，比如txt、jpg等，会直接在浏览器中显示，如果需要提示用户保存，就要利用Content-Disposition进行一下处理，关键在于一定要加上attachment：
+//            response.setHeader("Content-Disposition","attachment;filename=FileName.txt");
             ZipOutputStream zos = new ZipOutputStream(response.getOutputStream());
             ArrayList<String> files = Lists.newArrayList(
-                    "http://***/commodity_qrcode/qrcode_test/1983207019.jpg", "http://image.carzone.cn/commodity_qrcode/qrcode_test/1979780937.jpg", "http://image.carzone.cn/commodity_qrcode/qrcode_test/1979780935.jpg",
-                    "http://***/commodity_qrcode/qrcode_test/1979780934.jpg", "http://image.carzone.cn/commodity_qrcode/qrcode_test/1152809.jpg", "http://image.carzone.cn/commodity_qrcode/qrcode_test/1152808.jpg",
-                    "http://***/commodity_qrcode/qrcode_test/1152807.jpg", "http://image.carzone.cn/commodity_qrcode/qrcode_test/1152806.jpg", "http://image.carzone.cn/commodity_qrcode/qrcode_test/1152805.jpg",
-                    "https://****/commander/test/2020-12/memo/f86dc6ba7a7642ac83f9f4409af2227e.jpg");
+                     "http://image.carzone.cn/commodity_qrcode/qrcode_test/1152806.jpg",
+                    "http://image.carzone.cn/commodity_qrcode/qrcode_test/1152805.jpg"
+                   );
 
             for (int i = 0; i < files.size(); i++) {
                 URL url = new URL(files.get(i));
                 //目录不能重复，否则会duplicate entry: ll/
                 //因此需要加个时间戳或者是uuid作为后缀
                 //也可以根据文件地址作为目录，会自动根据路径分区文件夹，一个/一个文件目录
-                zos.putNextEntry(new ZipEntry("ll/" + i));
+                zos.putNextEntry(new ZipEntry("ll/" + i +"/"+ ".jpg"));
 //              此时会自动分级目录，
 //                zos.putNextEntry(new ZipEntry(files.get(i));
 
