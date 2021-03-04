@@ -31,4 +31,6 @@ public class People {
     @Excel(name = "性别",width = 15D)
     private String sex;
 
+    private AttributeVo attributeVo;
+
 }
