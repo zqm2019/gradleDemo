@@ -78,9 +78,10 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-jdbc') {
         exclude module: 'org.springframework.boot:spring-boot-starter-logging'
     }
+    compile 'org.springframework.boot:spring-boot-devtools:2.4.1'
 
 
-  //  testCompile 'org.springframework.boot:spring-boot-starter-test'
+    //  testCompile 'org.springframework.boot:spring-boot-starter-test'
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
    //compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.35'
     // https://mvnrepository.com/artifact/org.mybatis/mybatis
