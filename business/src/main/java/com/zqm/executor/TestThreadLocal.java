@@ -54,6 +54,8 @@ public class TestThreadLocal {
             if (map != null && map1.size() == 0) {
                 map1.put("1", "1");
             }
+            System.out.println(Thread.currentThread().getName()+"threadLocal:" + threadLocal.get());
+            System.out.println(Thread.currentThread().getName()+"threadLocal2:" + threadLocal2.get());
             threadLocal.set(map1);
             threadLocal2.set(map1);
             System.out.println(Thread.currentThread().getName()+"threadLocal:" + threadLocal.get());
