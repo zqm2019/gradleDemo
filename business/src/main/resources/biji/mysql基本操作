@@ -107,3 +107,8 @@ where w.acc_id=1 and w.mid=a.mid and w.model_memo_id = a.memo_id)) b
             select * from zam.student
              where 1=1
 
+
+// 不可以隐式类型转换
+select * from tm_oil_grade where id = '11'
+
+# 数据查询或数据操作，关联表的上限尽量控制3张表内，禁止超过3张表的join，且join关联字段的数据类型必须保持一致。

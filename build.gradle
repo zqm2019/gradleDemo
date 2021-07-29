@@ -78,7 +78,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-jdbc') {
         exclude module: 'org.springframework.boot:spring-boot-starter-logging'
     }
-    compile 'org.springframework.boot:spring-boot-devtools:2.4.1'
+//    compile 'org.springframework.boot:spring-boot-devtools:2.4.1'
 
 
     //  testCompile 'org.springframework.boot:spring-boot-starter-test'

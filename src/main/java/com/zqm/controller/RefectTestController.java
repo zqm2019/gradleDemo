@@ -16,12 +16,10 @@ public class RefectTestController<T,R> {
 
 
     public RefectTestController() {
-        TypeToken<T> classType = new TypeToken<T>(getClass()) {
-        };
+        TypeToken<T> classType = new TypeToken<T>(getClass()) {};
         clazz = (Class<T>) classType.getRawType();
 
-        TypeToken<R> classTypeR = new TypeToken<R>(getClass()) {
-        };
+        TypeToken<R> classTypeR = new TypeToken<R>(getClass()) {};
         clazzR = (Class<R>) classTypeR.getRawType();
 
         System.out.println(clazz);
