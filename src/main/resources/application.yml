@@ -1,5 +1,11 @@
 
 spring:
+  mvc:
+    throw-exception-if-no-handler-found: true
+
+  resources:
+    add-mappings: false
+
   devtools:
     restart:
       enabled: true  #设置开启热部署
@@ -73,6 +79,9 @@ server:
 #    ROOT: INFO
 
 debug: true
+
+
+
 
 
 

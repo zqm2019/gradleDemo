@@ -84,7 +84,7 @@ public class EasyPoiTest {
 
     public static void main(String[] args) throws Exception{
         System.out.print( "格式化结果:");
-        System.out.println(decimalFormat.format(new BigDecimal("10.10")));
+        System.out.println(decimalFormat.format(new BigDecimal("11111.0000000")));
     }
 
 }

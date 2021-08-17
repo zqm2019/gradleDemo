@@ -26,9 +26,9 @@ public class StringUtils {
         System.out.println(new BigDecimal("2.0"));
         System.out.println(new Double("0"));
         System.out.println(new BigDecimal("2.00"));
-        String d = new BigDecimal("100.10").stripTrailingZeros().toPlainString();
+        String d = new BigDecimal("1000000.10").stripTrailingZeros().toPlainString();
         System.out.println(d);
-        System.out.println(new BigDecimal("100.10").stripTrailingZeros().toPlainString());
+        System.out.println(new BigDecimal("11111.0000000").stripTrailingZeros().toPlainString());
     }
 
     public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

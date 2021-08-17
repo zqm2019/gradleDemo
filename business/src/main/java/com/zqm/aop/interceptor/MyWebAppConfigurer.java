@@ -69,6 +69,13 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
             } else if (e instanceof MethodArgumentNotValidException) {
                 result.setCode(ResultCode.FAIL).setMessage(handlerNotValidException((MethodArgumentNotValidException) e));
             } else if (e instanceof NoHandlerFoundException) {
+//                要捕获到404异常，然后进行统一返回值的处理其实也很简单。
+//                第一步，关闭springboot的异常自动资源映射，让其抛出异常：
+//#出现错误时, 直接抛出异常
+//                spring.mvc.throw-exception-if-no-handler-found=true
+//#关闭工程中的资源文件建立映射
+//                spring.resources.add-mappings=false
+
                 result.setCode(ResultCode.NOT_FOUND).setMessage("接口 [" + request.getRequestURI() + "] 不存在");
             } else if (e instanceof HttpRequestMethodNotSupportedException){
                 result.setCode(ResultCode.INTERNAL_SERVER_ERROR).setMessage("接口" + request.getRequestURI() + ((HttpRequestMethodNotSupportedException) e).getMethod() + e.getMessage());
