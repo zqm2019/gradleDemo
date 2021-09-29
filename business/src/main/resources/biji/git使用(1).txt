@@ -131,6 +131,9 @@ git commit -m "update .gitignore"
 # 第一次:设置与git连接
 git remote add origin https://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@github.com/zqm2019/gradelDemo.git
 
+# 删除远程仓库
+git remote rm origin
+
 #已设置连接的修改别名即可
 git remote set-url origin https://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@github.com/zqm2019/gradelDemo.git
 
