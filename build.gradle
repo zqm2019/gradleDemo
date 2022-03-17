@@ -109,6 +109,8 @@ dependencies {
 //    compile group: 'net.sf.ehcache', name: 'ehcache', version: '1.0.1'
 // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test
     testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.3.4.RELEASE'
+    implementation group: 'com.jcraft', name: 'jsch', version: '0.1.55'
+    implementation group: 'cn.hutool', name: 'hutool-all', version: '5.7.20'
 
 
 //
