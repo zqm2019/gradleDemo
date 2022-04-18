@@ -140,9 +140,11 @@ dependencies {
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
     compile group: 'org.apache.httpcomponents', name: 'httpcore', version: '4.4.13'
     //日志
-    compile group: 'org.slf4j', name: 'slf4j-api', version: '2.0.0-alpha1'
+//    compile group: 'org.slf4j', name: 'slf4j-api', version: '2.0.0-alpha1'
+//    compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '2.0.0-alpha1'
     compile group: 'com.alibaba', name: 'transmittable-thread-local', version: '2.12.1'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: '2.5.5'
+    compile group: 'com.google.guava', name: 'guava', version: '29.0-jre'
 
 
 }

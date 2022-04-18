@@ -111,6 +111,8 @@ dependencies {
     testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.3.4.RELEASE'
     implementation group: 'com.jcraft', name: 'jsch', version: '0.1.55'
     implementation group: 'cn.hutool', name: 'hutool-all', version: '5.7.20'
+    implementation group: 'org.apache.sshd', name: 'sshd-core', version: '2.8.0'
+
 
 
 //

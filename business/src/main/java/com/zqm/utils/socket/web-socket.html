@@ -59,6 +59,8 @@ websocket Demo---- user000 <br />
     function send(){
         var message = document.getElementById('text').value;
         websocket.send(message);
+        //清除文本框 内容
+        document.getElementById('text').value='';
     }
 </script>
 

@@ -2,13 +2,17 @@ package com.zqm.controller;
 
 import com.jcraft.jsch.*;
 import lombok.Data;
+import org.apache.sshd.client.SshClient;
+import org.apache.sshd.client.channel.ClientChannel;
+import org.apache.sshd.client.channel.ClientChannelEvent;
+import org.apache.sshd.client.session.ClientSession;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Date;
+import java.util.EnumSet;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @describe:
@@ -118,24 +122,24 @@ public class RemoteServerController {
      *
      * @param args
      */
-    public static void main(String[] args) {
-
-        String ip = "157.0.19.2";
-        String username = "root";
-        String password = "ictnj@123456";
-        DataBase dataBase = new DataBase();
-        //  连接数据类
-        dataBase.setUserName(username);
-        dataBase.setPassWord(password);
-        dataBase.setUrl(ip);
-        dataBase.setPort("10232");
-        RemoteServerController linux = new RemoteServerController();
-        System.out.println(new Date());
-        System.out.println(linux.getData(dataBase, "ps -ef |grep java"));
-        System.out.println(new Date());
-
-
-    }
+//    public static void main(String[] args) {
+//
+//        String ip = "157.0.19.2";
+//        String username = "root";
+//        String password = "ictnj@123456";
+//        DataBase dataBase = new DataBase();
+//        //  连接数据类
+//        dataBase.setUserName(username);
+//        dataBase.setPassWord(password);
+//        dataBase.setUrl(ip);
+//        dataBase.setPort("10232");
+//        RemoteServerController linux = new RemoteServerController();
+//        System.out.println(new Date());
+//        System.out.println(linux.getData(dataBase, "ps -ef |grep java"));
+//        System.out.println(new Date());
+//
+//
+//    }
 
     @Data
     public static class DataBase {
@@ -147,5 +151,70 @@ public class RemoteServerController {
         private String port;
 
     }
+
+    public static void main(String[] args) throws IOException {
+        while (true) {
+            listFolderStructure("root", "ictnj@123456", "157.0.19.2", 10232, 5, "ls");
+            System.out.println(new Date().toString());
+        }
+
+    }
+
+    public static void listFolderStructure(String username, String password,
+
+                                           String host, int port, long defaultTimeoutSeconds, String command) throws IOException {
+
+        SshClient client = SshClient.setUpDefaultClient();
+
+        client.start();
+
+        try (ClientSession session = client.connect(username, host, port)
+
+                .verify(defaultTimeoutSeconds, TimeUnit.SECONDS).getSession()) {
+
+            session.addPasswordIdentity(password);
+
+            session.auth().verify(defaultTimeoutSeconds, TimeUnit.SECONDS);
+
+            try (ByteArrayOutputStream responseStream = new ByteArrayOutputStream();
+
+                 ClientChannel channel = session.createChannel(command)) {
+
+                channel.setOut(responseStream);
+
+                try {
+                    channel.open().verify(defaultTimeoutSeconds, TimeUnit.SECONDS);
+
+                    try (OutputStream pipedIn = channel.getInvertedIn()) {
+
+                        pipedIn.write(command.getBytes());
+
+                        pipedIn.flush();
+
+                    }
+
+                    channel.waitFor(EnumSet.of(ClientChannelEvent.CLOSED),
+
+                            TimeUnit.SECONDS.toMillis(defaultTimeoutSeconds));
+
+                    String responseString = new String(responseStream.toByteArray());
+
+                    System.out.println(responseString);
+
+                } finally {
+
+                    channel.close(false);
+
+                }
+
+            }
+
+        } finally {
+
+            client.stop();
+        }
+    }
+
+
 
 }
