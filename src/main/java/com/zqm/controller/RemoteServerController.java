@@ -178,7 +178,7 @@ public class RemoteServerController {
 
             try (ByteArrayOutputStream responseStream = new ByteArrayOutputStream();
 
-                 ClientChannel channel = session.createChannel(command)) {
+                 ClientChannel channel = session.createExecChannel(command)) {
 
                 channel.setOut(responseStream);
 

@@ -113,6 +113,9 @@ dependencies {
     implementation group: 'cn.hutool', name: 'hutool-all', version: '5.7.20'
     implementation group: 'org.apache.sshd', name: 'sshd-core', version: '2.8.0'
 
+//    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.7.0'
+//    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-config', version: '2.2.7.RELEASE'
+
 
 
 //

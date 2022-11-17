@@ -131,7 +131,7 @@ dependencies {
 // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: '2.3.2.RELEASE'
     // https://mvnrepository.com/artifact/cn.afterturn/easypoi-com.zqm.base 处理表格
-    compile group: 'cn.afterturn', name: 'easypoi-com.zqm.base', version: '3.0.3'
+//    compile group: 'cn.afterturn', name: 'easypoi-com.zqm.base', version: '3.0.3'
     // https://mvnrepository.com/artifact/cn.afterturn/easypoi-web
     compile group: 'cn.afterturn', name: 'easypoi-web', version: '3.0.3'
     // https://mvnrepository.com/artifact/cn.afterturn/easypoi-annotation

@@ -111,3 +111,10 @@ mybatis:
 
 #all depend api list
 #rest:
+
+test: hello
+management:
+  endpoints:
+    web:
+      exposure:
+        include=refresh: refresh
