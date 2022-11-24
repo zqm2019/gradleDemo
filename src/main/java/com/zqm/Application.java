@@ -15,6 +15,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @EnableTransactionManagement
 @SpringBootApplication(scanBasePackages = {"com.zqm"})
+// 启动去除数据库依赖 如果是使用阿里druid 还需去掉DruidDataSourceAutoConfiguration.class
+//@SpringBootApplication(scanBasePackages = {"com.zqm"},exclude = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
+
 @EnableCaching
 public class Application extends SpringBootServletInitializer {
 
@@ -26,5 +29,13 @@ public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Application.class, args);
+        /**
+         *
+         *  如果想打开图形化界面 使用下面方式 WebSocketConfig BeanController 这两个类需要注释 才能开启下面的swing窗口
+         *  SpringApplicationBuilder builder = new SpringApplicationBuilder(Application.class);
+         *  builder.headless(false).web(false).run(args);
+         *  new JFram();
+         */
+
     }
 }
