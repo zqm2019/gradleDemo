@@ -1,5 +1,18 @@
 
 spring:
+  mvc:
+    throw-exception-if-no-handler-found: true
+
+  resources:
+    add-mappings: false
+
+  devtools:
+    restart:
+      enabled: true  #设置开启热部署
+      additional-paths: src/main/java #重启目录
+      exclude: WEB-INF/**
+    freemarker:
+      cache: false    #页面不加载缓存，修改即时生效
   aop:
     proxy-target-class: true
   datasource:
@@ -69,6 +82,9 @@ debug: true
 
 
 
+
+
+
 executorPool:
   executorMaxPoolSize: 64
   executorCoreSize: 32
@@ -95,3 +111,10 @@ mybatis:
 
 #all depend api list
 #rest:
+
+test: hello
+management:
+  endpoints:
+    web:
+      exposure:
+        include=refresh: refresh

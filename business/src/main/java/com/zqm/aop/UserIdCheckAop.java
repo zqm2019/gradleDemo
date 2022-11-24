@@ -3,10 +3,6 @@
  */
 package com.zqm.aop;
 
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.List;
-
 import org.apache.commons.beanutils.BeanUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -20,6 +16,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * TODO: description
@@ -52,8 +52,8 @@ public class UserIdCheckAop {
     @Pointcut(value = "@annotation(com.rq.aop.common.annotation.MyAnnotation)")
     public void methodPointcut(){}
 
-
-    @Pointcut(value = "@annotation(com.rq.aop.common.annotation.MyAnnotation2)") //在所有标记@MyAnnotation2方法上切入
+    //在所有标记@MyAnnotation2方法上切入
+    @Pointcut(value = "@annotation(com.rq.aop.common.annotation.MyAnnotation2)")
     public void methodPointcut2(){}
     */
 

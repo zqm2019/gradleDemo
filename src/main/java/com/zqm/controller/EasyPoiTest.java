@@ -83,8 +83,9 @@ public class EasyPoiTest {
     private static final DecimalFormat decimalFormat = new DecimalFormat("###################.###########");
 
     public static void main(String[] args) throws Exception{
+        getObjectAllAttrs(People.class);
         System.out.print( "格式化结果:");
-        System.out.println(decimalFormat.format(new BigDecimal("10.10")));
+        System.out.println(decimalFormat.format(new BigDecimal("11111.0000000")));
     }
 
 }

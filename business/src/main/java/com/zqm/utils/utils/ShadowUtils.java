@@ -1,13 +1,12 @@
 
 package com.zqm.utils.utils;
 
+import org.apache.commons.codec.binary.Base64;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-
 import java.security.Key;
-
-import org.apache.commons.codec.binary.Base64;
 
 /**
  * description:加解密
@@ -22,6 +21,20 @@ public class ShadowUtils {
     private static final String KEYVALUE = "10f9c99bfbc68e7d"; // 128 bit
 
     private ShadowUtils() {
+    }
+
+
+    public static void main(String[] args) {
+        try {
+            String test = "xingmingd sfdsmf dsafjdsnfjdskafadsjfkjdksjfdskfjdskfjkdsjfksjdfksjjg chaqianming 2022-09-01";
+            System.out.println(test);
+            String s = encrypt2Hex(test);
+            System.out.println(s);
+            System.out.println(decryptFromHex(s));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

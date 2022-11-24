@@ -3,14 +3,14 @@
  */
 package com.zqm.aop.interceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import java.lang.reflect.Method;
-
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.Method;
 
 /**
  * TODO: description
@@ -30,6 +30,12 @@ public class MyInterceptor1 implements HandlerInterceptor {
         Method method = handlerMethod.getMethod();
         // 判断接口是否需要登录
         HanderTime methodAnnotation = method.getAnnotation(HanderTime.class);
+
+        //1.获取目标类上的目标注解（可判断目标类是否存在该注解）
+        HanderTime annotationInClass = AnnotationUtils.findAnnotation(handlerMethod.getBeanType(), HanderTime.class);
+        //2.获取目标方法上的目标注解（可判断目标方法是否存在该注解）
+        HanderTime annotationInMethod = AnnotationUtils.findAnnotation(handlerMethod.getMethod(), HanderTime.class);
+
         if (methodAnnotation != null) {
             Long startTime = System.currentTimeMillis();
             request.setAttribute("startTime", startTime);

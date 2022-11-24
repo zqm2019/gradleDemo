@@ -8,6 +8,8 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.MutablePair;
 
 import java.util.Date;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * 消息订阅抽象类
@@ -31,12 +33,17 @@ public abstract class AbstractSubscribe {
      */
     abstract Pair<Object, Date> buildSubscribeMessage(String subscribeContent);
 
-    public static void main(String[] args) {
-        Pair<Boolean, String> pair = testPair();
-        System.out.println(pair.getKey());
-        System.out.println(pair.getValue());
-        System.out.println(testMutablePair().getLeft());
+//    public static void main(String[] args) {
+//        Pair<Boolean, String> pair = testPair();
+//        System.out.println(pair.getKey());
+//        System.out.println(pair.getValue());
+//        System.out.println(testMutablePair().getLeft());
+//
+//    }
 
+    public static void main(String[] args) {
+        String [] midArrays = {"2","4"};
+        System.out.println(Stream.of(midArrays).map(Integer::new).collect(Collectors.toList()));
     }
 
     public static Pair<Boolean,String> testPair(){
@@ -62,5 +69,7 @@ public abstract class AbstractSubscribe {
         pair.setLeft(true);
         return pair;
     }
+
+
 
 }

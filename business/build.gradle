@@ -130,8 +130,8 @@ dependencies {
     compile group: 'net.sf.ehcache', name: 'ehcache', version: '2.10.4'
 // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: '2.3.2.RELEASE'
-    // https://mvnrepository.com/artifact/cn.afterturn/easypoi-base 处理表格
-    compile group: 'cn.afterturn', name: 'easypoi-base', version: '3.0.3'
+    // https://mvnrepository.com/artifact/cn.afterturn/easypoi-com.zqm.base 处理表格
+//    compile group: 'cn.afterturn', name: 'easypoi-com.zqm.base', version: '3.0.3'
     // https://mvnrepository.com/artifact/cn.afterturn/easypoi-web
     compile group: 'cn.afterturn', name: 'easypoi-web', version: '3.0.3'
     // https://mvnrepository.com/artifact/cn.afterturn/easypoi-annotation
@@ -140,7 +140,11 @@ dependencies {
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
     compile group: 'org.apache.httpcomponents', name: 'httpcore', version: '4.4.13'
     //日志
-    compile group: 'org.slf4j', name: 'slf4j-api', version: '2.0.0-alpha1'
+//    compile group: 'org.slf4j', name: 'slf4j-api', version: '2.0.0-alpha1'
+//    compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '2.0.0-alpha1'
+    compile group: 'com.alibaba', name: 'transmittable-thread-local', version: '2.12.1'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: '2.5.5'
+    compile group: 'com.google.guava', name: 'guava', version: '29.0-jre'
 
 
 }
