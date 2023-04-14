@@ -1,6 +1,10 @@
 
 package com.zqm.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.parser.Feature;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.zqm.vo.People;
 import org.wltea.analyzer.core.IKSegmenter;
 import org.wltea.analyzer.core.Lexeme;
 
@@ -253,6 +257,37 @@ public class StringController {
 
     public static void main(String[] args) {
         testSplit("wo    是，zho ng,国人");
+
+        People p = new People();
+        p.setAge(11);
+        p.setName("lm");
+        p.setBirthDay("11yue");
+        System.out.println(JSON.toJSONString(p));
+        String ab = "{\"birthDay\":\"11yue\",\"name\":\"lm\",\"age\":11}";
+        People people = JSON.parseObject(ab, People.class, Feature.OrderedField);
+        System.out.println(JSON.toJSONString(people));
+        String a = "{\"d\":2,\"b\":\"2\",\"a\":\"1\"}";
+        Object parse = JSON.parse(a, Feature.OrderedField);
+        System.out.println(parse.toString());
+        System.out.println(JSON.toJSONString(parse));
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("a", "1");
+        map.put("b", "2");
+        map.put("c", null);
+        String jsonString = JSON.toJSONString(map);
+        System.out.println(jsonString);
+
+        Map<String,Object> map1 = new HashMap<>();
+        map1.put("b", "2");
+        map1.put("c", "1");
+        map1.put("a", 2);
+
+        String jsonString1 = JSON.toJSONString(map1, SerializerFeature.SortField);
+        System.out.println(jsonString1);
+
+        String jsonString2 = map1.toString();
+        System.out.println(jsonString2);
     }
 
 
