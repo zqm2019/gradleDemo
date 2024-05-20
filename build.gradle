@@ -60,6 +60,8 @@ dependencies {
     //包含business model 的所有依赖
      compile project(':business')
     runtime('mysql:mysql-connector-java')
+    compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.10.0'
+    compile group: 'cn.hutool', name: 'hutool-all', version: '3.14.9'
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.11'
     compile('org.springframework.boot:spring-boot-starter-aop')
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')

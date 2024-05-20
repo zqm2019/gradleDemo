@@ -137,3 +137,13 @@ git remote rm origin
 #已设置连接的修改别名即可
 git remote set-url origin https://your token@github.com/zqm2019/gradelDemo.git
 
+
+#test分支强制覆盖dev分支 下面三步即可用test分支代码覆盖de分支
+
+git checkout dev
+
+git reset --hard origin/test
+
+
+git push -f
+

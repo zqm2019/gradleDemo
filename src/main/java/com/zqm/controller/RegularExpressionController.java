@@ -1,15 +1,11 @@
 
 package com.zqm.controller;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import org.springframework.util.StringUtils;
+
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.springframework.util.StringUtils;
 
 /**
  * 正则表达式测试入口
@@ -41,11 +37,11 @@ public class RegularExpressionController {
     }
 
 
-    public static void main(String[] args) {
-        String str = "122\uD83E\uDDE1\uD83E\uDDE1";
-        System.out.println(buildNickNamePerfect(str));
-
-    }
+//    public static void main(String[] args) {
+//        String str = "122\uD83E\uDDE1\uD83E\uDDE1";
+//        System.out.println(buildNickNamePerfect(str));
+//
+//    }
 
     /**
      * 完美解决  使用codePointCount 代码点表示一个字符的概念。
@@ -226,5 +222,41 @@ public class RegularExpressionController {
         }
 
         Objects.equals(a,result);
+    }
+
+
+    private static void test(){
+        String pattern = "\\d{4}-\\d{1,2}-\\d{1,2}T\\d{2}:\\d{2}:\\d{2}|((?<=\\+08:00) Sys.*)";
+
+        String str = "<109>1 2023-10-09T13:47:46.940+08:00 System-MantaRay23/Node-omc1vm67/LogType-RHEL-Auditd SLC SLNBI SUCCESS [origin software=\"SLC\" swVersion=\"23\"][SLC@18060 eventType=\"SERVICE_STOP\" dn=\"System-MantaRay23/Node-omc1vm67/LogType-RHEL-Auditd\" gid=\"UNKNOWN\" logType=\"RHEL-Auditd\" seType=\"NA_NODE\" userName=\"root\" seVersion=\"23\" occurrence=\"1\"][RhelAuditdParser@18061 ses=\"unset\" comm=\"systemd\" auid=\"unset\" u";
+
+
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(str);
+        System.out.println(m.matches());
+        while (m.find()){
+            System.out.println(m.group().trim().replace("T"," "));
+        }
+
+
+    }
+
+    public static void main(String[] args) {
+        String input = "My phone number is (123) 456-7890";
+
+        // 提取电话号码的区号和号码部分
+        String patternString = "\\((\\d{3})\\) (\\d{3}-\\d{4})";
+        Pattern pattern = Pattern.compile(patternString);
+        Matcher matcher = pattern.matcher(input);
+
+        // 提取并输出区号和号码部分
+        if (matcher.find()) {
+            String areaCode = matcher.group(1);
+            String phoneNumber = matcher.group(2);
+            System.out.println("Area code: " + areaCode);
+            System.out.println("Phone number: " + phoneNumber);
+        }
+
+        test();
     }
 }

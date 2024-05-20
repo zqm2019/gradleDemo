@@ -156,4 +156,58 @@ public class FileUtils {
         }
         return true;
     }
+
+    /**
+     * 分割文件
+     */
+
+    /**
+     * @param bis 输入流
+     * @param filePath       新文件存储的文件夹路径
+     * @param partitionSize 每个文件的大小 单位MB
+     * @throws IOException
+     */
+    private static boolean singleSplitFile(BufferedInputStream bis, String filePath,int partitionSize) throws IOException {
+        int length = partitionSize * 1024 * 1024;
+        byte[] buffer = new byte[1024];
+        int tempLength;
+
+        System.out.println("----->>>> begin split " + filePath);
+        try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File(filePath)))) {
+            while ((tempLength = bis.read(buffer)) != -1) {
+                bos.write(buffer, 0, tempLength);
+                if ((length = length - tempLength) <= 0) {
+                    break;
+                }
+            }
+        }
+        System.out.println("<<<<----- yet finish split" + filePath);
+
+        return tempLength < 0;
+    }
+
+    /**
+     * 把大文件拆分为多个小文件
+     *
+     * @param sourcePath 需要被拆分的文件路径
+     * @param desPath    拆分后的文件应该存放的文件路径
+     * @param newName    每一个小文件名
+     */
+    public static void splitFile(String sourcePath, String desPath, String newName,String fileType) {
+
+        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(new File(sourcePath)))) {
+            for (int i = 0; ; i++) {
+                String filePath = desPath + File.separatorChar +newName+"_" +i+"."+fileType;
+                if (singleSplitFile(bis, filePath, 10)) {
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        splitFile("/Users/zhaqianming/Documents/书籍/深入JAVA虚拟机第二版.pdf","/Users/zhaqianming/Documents/南研院","testbook","pdf");
+    }
 }
